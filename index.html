@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ChocoHunt — Crafted for True Chocolate Lovers</title>
+<meta name="description" content="ChocoHunt — handcrafted premium chocolates, luxury gifting collections, dark chocolate bars, truffles, and modern dessert experiences from Pune.">
+<meta property="og:title" content="ChocoHunt — Crafted for True Chocolate Lovers">
+<meta property="og:description" content="Handcrafted premium chocolates, luxury gifting collections, and dark chocolate experiences.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --rich-brown:#2c1008; --deep-cocoa:#1a0a00; --warm-choc:#3d1a08;
+  --mid-choc:#6b2e0e; --light-choc:#a0522d; --gold:#c8962c;
+  --gold-light:#e6b84a; --gold-pale:#f5dfa0; --cream:#f5ede0;
+  --cream-dark:#e8d5b8; --matte-black:#0d0704;
+  --font-serif:'Cormorant Garamond',Georgia,serif;
+  --font-sans:'DM Sans',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--deep-cocoa);color:var(--cream);font-family:var(--font-sans);font-weight:400;line-height:1.7;overflow-x:hidden;cursor:none}
+::selection{background:var(--gold);color:var(--matte-black)}
+
+/* CURSOR */
+#cur{position:fixed;width:10px;height:10px;border-radius:50%;background:var(--gold);pointer-events:none;z-index:99999;transform:translate(-50%,-50%);transition:width .2s,height .2s;mix-blend-mode:difference}
+#cur-r{position:fixed;width:34px;height:34px;border-radius:50%;border:1px solid rgba(200,150,44,.5);pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:width .25s,height .25s}
+
+/* PROGRESS */
+#prog{position:fixed;top:0;left:0;height:2px;z-index:9999;background:linear-gradient(90deg,var(--gold),var(--gold-light));width:0%;transition:width .1s}
+
+/* LOADER */
+#load{position:fixed;inset:0;background:var(--matte-black);z-index:100000;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .8s,visibility .8s}
+#load.gone{opacity:0;visibility:hidden}
+.l-logo{font-family:var(--font-serif);font-size:3.5rem;font-weight:300;letter-spacing:.15em;color:var(--cream);opacity:0;animation:lf .8s .3s ease forwards}
+.l-bar-w{width:200px;height:1px;background:rgba(200,150,44,.15);margin-top:2rem;overflow:hidden}
+.l-bar{height:1px;background:var(--gold);animation:lb 2.2s ease forwards}
+.l-sub{font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-top:1rem;opacity:0;animation:lf .8s .7s ease forwards}
+@keyframes lf{to{opacity:1}}
+@keyframes lb{from{width:0}to{width:100%}}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1.5rem 4rem;display:flex;align-items:center;justify-content:space-between;transition:all .4s}
+nav.s{background:rgba(13,7,4,.88);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);padding:1rem 4rem;border-bottom:1px solid rgba(200,150,44,.1)}
+.n-logo{font-family:var(--font-serif);font-size:1.9rem;font-weight:600;letter-spacing:.06em;color:var(--cream);text-decoration:none}
+.n-logo span{color:var(--gold)}
+.n-links{display:flex;gap:2.5rem;list-style:none}
+.n-links a{font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,237,224,.65);text-decoration:none;transition:color .3s;position:relative}
+.n-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:right;transition:transform .35s}
+.n-links a:hover{color:var(--gold-light)}
+.n-links a:hover::after{transform:scaleX(1);transform-origin:left}
+.n-cta{font-size:.73rem;letter-spacing:.15em;text-transform:uppercase;border:1px solid var(--gold);color:var(--gold);padding:.6rem 1.5rem;background:transparent;cursor:none;transition:all .3s;text-decoration:none}
+.n-cta:hover{background:var(--gold);color:var(--matte-black)}
+.hbg{display:none;flex-direction:column;gap:5px;cursor:none}
+.hbg span{display:block;width:26px;height:1px;background:var(--cream);transition:all .3s}
+.mnav{position:fixed;inset:0;background:var(--matte-black);z-index:999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2.5rem;transform:translateX(100%);transition:transform .5s cubic-bezier(.77,0,.18,1)}
+.mnav.open{transform:translateX(0)}
+.mnav a{font-family:var(--font-serif);font-size:2.5rem;font-weight:300;color:var(--cream);text-decoration:none;transition:color .3s}
+.mnav a:hover{color:var(--gold)}
+
+/* ── HERO ── */
+#hero{position:relative;min-height:100vh;display:grid;place-items:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover;filter:brightness(.35) saturate(1.3)}
+.hero-bg-grad{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(13,7,4,.3) 0%,rgba(13,7,4,.5) 50%,rgba(13,7,4,.95) 100%)}
+.hero-content{position:relative;z-index:2;text-align:center;padding:8rem 2rem 5rem;max-width:1000px}
+.h-eye{font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;opacity:0;transform:translateY(18px);animation:su .8s 2.4s ease forwards}
+.h-title{font-family:var(--font-serif);font-size:clamp(3.8rem,9vw,9rem);font-weight:300;line-height:1;letter-spacing:.01em;color:var(--cream);margin-bottom:1.5rem;opacity:0;transform:translateY(28px);animation:su 1s 2.6s ease forwards}
+.h-title em{font-style:italic;color:var(--gold-light)}
+.h-sub{font-size:clamp(1rem,2vw,1.2rem);font-weight:300;color:rgba(245,237,224,.65);max-width:520px;margin:0 auto 3rem;opacity:0;transform:translateY(18px);animation:su .9s 2.9s ease forwards}
+.h-btns{display:flex;gap:1.25rem;justify-content:center;flex-wrap:wrap;opacity:0;transform:translateY(18px);animation:su .8s 3.1s ease forwards}
+.h-scroll{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;opacity:0;animation:fi 1s 3.8s ease forwards}
+.h-scroll span{font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(245,237,224,.4)}
+.s-line{width:1px;height:48px;background:linear-gradient(to bottom,var(--gold),transparent);animation:sl 2s ease infinite}
+@keyframes su{to{opacity:1;transform:translateY(0)}}
+@keyframes fi{to{opacity:1}}
+@keyframes sl{0%,100%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1)}}
+
+.btn-p{font-family:var(--font-sans);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;padding:1rem 2.5rem;background:var(--gold);color:var(--matte-black);border:none;cursor:none;transition:all .3s;text-decoration:none;font-weight:500}
+.btn-p:hover{background:var(--gold-light);transform:translateY(-2px)}
+.btn-o{font-family:var(--font-sans);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;padding:1rem 2.5rem;background:transparent;color:var(--cream);border:1px solid rgba(245,237,224,.35);cursor:none;transition:all .3s;text-decoration:none}
+.btn-o:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
+
+/* ── MARQUEE ── */
+.mq{background:var(--gold);padding:.85rem 0;overflow:hidden}
+.mq-t{display:flex;gap:3rem;animation:mq 28s linear infinite;white-space:nowrap}
+.mq-i{font-family:var(--font-serif);font-size:1rem;color:var(--matte-black);letter-spacing:.04em;flex-shrink:0}
+.mq-d{color:rgba(13,7,4,.4)}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(36px);transition:opacity .85s ease,transform .85s ease}
+.rv.on{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+
+/* SECTION COMMONS */
+.s-eye{font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:1rem}
+.s-title{font-family:var(--font-serif);font-size:clamp(2.5rem,5vw,4.5rem);font-weight:300;line-height:1.1;color:var(--cream)}
+.s-title em{font-style:italic;color:var(--gold-light)}
+.s-desc{font-size:1rem;font-weight:300;color:rgba(245,237,224,.5);max-width:480px;margin:1.5rem auto 0}
+.s-head{text-align:center;margin-bottom:5rem}
+.divdr{display:flex;align-items:center;gap:1.5rem;max-width:280px;margin:1.5rem auto}
+.divdr-l{flex:1;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent)}
+.divdr-d{width:7px;height:7px;background:var(--gold);transform:rotate(45deg);flex-shrink:0}
+
+/* ── GIANT VISUAL STRIP ── */
+.vis-strip{position:relative;height:70vh;overflow:hidden}
+.vis-strip img{width:100%;height:100%;object-fit:cover;filter:brightness(.55) saturate(1.4)}
+.vis-strip-over{position:absolute;inset:0;background:linear-gradient(to right,rgba(13,7,4,.8) 0%,rgba(13,7,4,.2) 50%,transparent 100%);display:flex;align-items:center;padding:0 8rem}
+.vis-strip-text{max-width:520px}
+.vs-label{font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
+.vs-heading{font-family:var(--font-serif);font-size:clamp(2.5rem,5vw,5rem);font-weight:300;line-height:1.1;color:var(--cream);margin-bottom:1.5rem}
+.vs-heading em{font-style:italic;color:var(--gold-light)}
+.vs-body{font-size:1rem;font-weight:300;color:rgba(245,237,224,.6);line-height:1.8}
+
+/* ── COLLECTIONS ── */
+#collections{padding:7rem 4rem;background:linear-gradient(180deg,var(--deep-cocoa) 0%,#100600 100%)}
+.col-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;max-width:1400px;margin:0 auto}
+.cc{position:relative;overflow:hidden;cursor:none;aspect-ratio:3/4}
+.cc img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.25,.46,.45,.94);filter:brightness(.7) saturate(1.3)}
+.cc:hover img{transform:scale(1.08);filter:brightness(.85) saturate(1.4)}
+.cc-grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,7,4,.95) 0%,rgba(13,7,4,.2) 55%,transparent 100%);z-index:1}
+.cc-tag{position:absolute;top:1.5rem;right:1.5rem;z-index:2;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;padding:.35rem .85rem;background:var(--gold);color:var(--matte-black);font-weight:500}
+.cc-body{position:absolute;bottom:0;left:0;right:0;padding:2rem 1.8rem;z-index:2;transform:translateY(55px);transition:transform .45s ease}
+.cc:hover .cc-body{transform:translateY(0)}
+.cc-lbl{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem}
+.cc-name{font-family:var(--font-serif);font-size:1.9rem;font-weight:400;line-height:1.1;color:var(--cream);margin-bottom:.6rem}
+.cc-desc{font-size:.85rem;font-weight:300;color:rgba(245,237,224,.6);line-height:1.6;margin-bottom:1.25rem}
+.cc-qv{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);border:none;border-bottom:1px solid var(--gold);padding-bottom:2px;background:none;cursor:none}
+
+/* ── SPLIT FULLSCREEN ── */
+.split-fs{display:grid;grid-template-columns:1fr 1fr;min-height:85vh}
+.split-img{position:relative;overflow:hidden}
+.split-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.split-img:hover img{transform:scale(1.04)}
+.split-img-over{position:absolute;inset:0;background:rgba(13,7,4,.25)}
+.split-content{display:flex;flex-direction:column;justify-content:center;padding:6rem 5rem;background:var(--warm-choc)}
+.sp-eye{font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:1.25rem}
+.sp-title{font-family:var(--font-serif);font-size:clamp(2.2rem,4vw,4rem);font-weight:300;line-height:1.15;color:var(--cream);margin-bottom:1.5rem}
+.sp-title em{font-style:italic;color:var(--gold-light)}
+.sp-body{font-size:.95rem;font-weight:300;color:rgba(245,237,224,.6);line-height:1.85;margin-bottom:1.25rem}
+.sp-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin:2.5rem 0;border-top:1px solid rgba(200,150,44,.15);padding-top:2rem}
+.sp-num{font-family:var(--font-serif);font-size:2.8rem;font-weight:300;color:var(--gold);line-height:1}
+.sp-lbl{font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(245,237,224,.4);margin-top:.4rem}
+
+/* ── GIANT MOSAIC ── */
+.mosaic{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:50vh 50vh;gap:4px;background:var(--matte-black)}
+.mos-cell{position:relative;overflow:hidden;cursor:none}
+.mos-cell img{width:100%;height:100%;object-fit:cover;transition:transform .7s ease,filter .5s ease;filter:brightness(.65) saturate(1.4)}
+.mos-cell:hover img{transform:scale(1.06);filter:brightness(.85) saturate(1.5)}
+.mos-big{grid-row:span 2}
+.mos-over{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,7,4,.8) 0%,transparent 60%);z-index:1;opacity:0;transition:opacity .4s}
+.mos-cell:hover .mos-over{opacity:1}
+.mos-label{position:absolute;bottom:1.5rem;left:1.5rem;z-index:2;opacity:0;transition:opacity .4s,transform .4s;transform:translateY(10px)}
+.mos-cell:hover .mos-label{opacity:1;transform:translateY(0)}
+.mos-label span{font-family:var(--font-serif);font-size:1.3rem;font-weight:300;color:var(--cream)}
+
+/* ── ABOUT ── */
+#about{padding:8rem 4rem;background:linear-gradient(160deg,#0d0704 0%,#1a0a00 50%,#2c1008 100%)}
+.about-in{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center}
+.about-vis{position:relative}
+.about-img-main{width:100%;aspect-ratio:4/5;overflow:hidden;position:relative}
+.about-img-main img{width:100%;height:100%;object-fit:cover;filter:brightness(.75) saturate(1.3)}
+.about-img-accent{position:absolute;width:45%;aspect-ratio:1;bottom:-2rem;right:-2rem;overflow:hidden;border:3px solid var(--deep-cocoa)}
+.about-img-accent img{width:100%;height:100%;object-fit:cover;filter:brightness(.8) saturate(1.2)}
+.about-bar{position:absolute;top:2rem;left:-1.5rem;font-family:var(--font-serif);font-size:.68rem;letter-spacing:.2em;color:var(--gold);writing-mode:vertical-rl;text-transform:uppercase}
+.about-quote{font-family:var(--font-serif);font-size:clamp(1.9rem,3.5vw,3.2rem);font-weight:300;line-height:1.2;color:var(--cream);margin-bottom:1.75rem}
+.about-quote em{font-style:italic;color:var(--gold-light)}
+.about-p{font-size:.95rem;font-weight:300;color:rgba(245,237,224,.6);line-height:1.85;margin-bottom:1.25rem}
+.about-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin:2.5rem 0;border-top:1px solid rgba(200,150,44,.15);padding-top:2.25rem}
+.a-num{font-family:var(--font-serif);font-size:2.8rem;font-weight:300;color:var(--gold);line-height:1}
+.a-lbl{font-size:.63rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(245,237,224,.4);margin-top:.4rem}
+
+/* ── GIANT PARALLAX QUOTE ── */
+.pq-section{position:relative;height:60vh;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.pq-bg{position:absolute;inset:-10%;z-index:0}
+.pq-bg img{width:100%;height:100%;object-fit:cover;filter:brightness(.25) saturate(1.5)}
+.pq-over{position:absolute;inset:0;background:rgba(13,7,4,.6);z-index:1}
+.pq-content{position:relative;z-index:2;text-align:center;padding:0 3rem;max-width:900px}
+.pq-quote{font-family:var(--font-serif);font-size:clamp(1.6rem,4vw,3.5rem);font-weight:300;font-style:italic;line-height:1.4;color:var(--cream)}
+.pq-quote strong{color:var(--gold-light);font-style:normal;font-weight:400}
+.pq-attr{font-size:.68rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-top:2rem}
+
+/* ── PARTNERS ── */
+#partners{padding:7rem 4rem;background:linear-gradient(180deg,#0d0704,#1a0a00)}
+.p-grid{display:grid;grid-template-columns:repeat(4,1fr);max-width:1200px;margin:4rem auto 0;border:1px solid rgba(200,150,44,.08)}
+.p-card{padding:3rem 2rem;text-align:center;cursor:none;border-right:1px solid rgba(200,150,44,.08);border-bottom:1px solid rgba(200,150,44,.08);transition:background .4s;position:relative;overflow:hidden}
+.p-card::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at center,rgba(200,150,44,.07),transparent);opacity:0;transition:opacity .4s}
+.p-card:hover{background:rgba(200,150,44,.03)}
+.p-card:hover::before{opacity:1}
+.p-name{font-family:var(--font-serif);font-size:1.4rem;font-weight:300;color:rgba(245,237,224,.45);letter-spacing:.04em;transition:color .4s}
+.p-card:hover .p-name{color:var(--gold-light)}
+.p-type{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(200,150,44,.35);margin-top:.4rem;transition:color .3s}
+.p-card:hover .p-type{color:var(--gold)}
+
+/* ── SOCIAL ── */
+#social{padding:7rem 4rem;background:linear-gradient(160deg,#1a0a00,#0d0704)}
+.soc-links{display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;margin:4rem 0}
+.soc-link{display:flex;flex-direction:column;align-items:center;gap:.85rem;padding:2rem 2rem;border:1px solid rgba(200,150,44,.12);text-decoration:none;cursor:none;transition:all .4s;position:relative;overflow:hidden;min-width:130px}
+.soc-link::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(200,150,44,.07),transparent);transform:translateY(100%);transition:transform .4s ease}
+.soc-link:hover::before{transform:translateY(0)}
+.soc-link:hover{border-color:var(--gold);transform:translateY(-6px)}
+.soc-ico{width:48px;height:48px;border-radius:50%;border:1px solid rgba(200,150,44,.25);display:flex;align-items:center;justify-content:center;font-size:1.3rem;transition:background .4s}
+.soc-link:hover .soc-ico{background:rgba(200,150,44,.1)}
+.soc-plat{font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(245,237,224,.5);transition:color .3s}
+.soc-link:hover .soc-plat{color:var(--gold)}
+.soc-cnt{font-family:var(--font-serif);font-size:1.05rem;color:var(--cream);font-weight:300}
+
+/* Insta feed */
+.ig-feed{display:grid;grid-template-columns:repeat(6,1fr);gap:3px;max-width:1400px;margin:0 auto}
+.ig-cell{aspect-ratio:1;overflow:hidden;cursor:none;position:relative}
+.ig-cell img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease,filter .4s ease;filter:brightness(.7) saturate(1.3)}
+.ig-cell:hover img{transform:scale(1.08);filter:brightness(.95) saturate(1.5)}
+.ig-cell-ov{position:absolute;inset:0;background:rgba(13,7,4,.5);opacity:0;transition:opacity .4s;display:flex;align-items:center;justify-content:center}
+.ig-cell:hover .ig-cell-ov{opacity:1}
+.ig-cell-ov span{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+
+/* ── TESTIMONIALS ── */
+#testi{padding:7rem 4rem;background:linear-gradient(180deg,#0d0704,#1a0a00);overflow:hidden}
+.testi-w{overflow:hidden;max-width:1200px;margin:4rem auto 0}
+.testi-t{display:flex;gap:2rem;transition:transform .6s cubic-bezier(.25,.46,.45,.94)}
+.tc{min-width:calc(33.33% - 1.34rem);flex-shrink:0;padding:2.5rem;border:1px solid rgba(200,150,44,.1);background:rgba(245,237,224,.02);backdrop-filter:blur(6px)}
+.tc-stars{color:var(--gold);font-size:.95rem;letter-spacing:2px;margin-bottom:1.5rem}
+.tc-text{font-family:var(--font-serif);font-size:1.1rem;font-style:italic;font-weight:300;line-height:1.75;color:var(--cream);margin-bottom:2rem}
+.tc-auth{display:flex;align-items:center;gap:1rem}
+.tc-av{width:44px;height:44px;border-radius:50%;border:1px solid rgba(200,150,44,.25);display:flex;align-items:center;justify-content:center;font-family:var(--font-serif);font-size:1rem;color:var(--gold);background:rgba(200,150,44,.07);flex-shrink:0}
+.tc-name{font-size:.9rem;font-weight:500;color:var(--cream)}
+.tc-loc{font-size:.7rem;color:rgba(245,237,224,.4);letter-spacing:.08em}
+.testi-nav{display:flex;justify-content:center;gap:1rem;margin-top:3rem}
+.tb{width:44px;height:44px;border:1px solid rgba(200,150,44,.22);background:transparent;cursor:none;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:1.1rem;transition:all .3s}
+.tb:hover{background:var(--gold);color:var(--matte-black)}
+
+/* ── CONTACT ── */
+#contact{padding:7rem 4rem;background:linear-gradient(160deg,#1a0a00,#0d0704)}
+.con-in{display:grid;grid-template-columns:1fr 1fr;gap:5rem;max-width:1200px;margin:4rem auto 0}
+.con-title{font-family:var(--font-serif);font-size:clamp(2rem,4vw,3.5rem);font-weight:300;color:var(--cream);line-height:1.15;margin-bottom:2rem}
+.con-title em{font-style:italic;color:var(--gold-light)}
+.con-det{display:flex;gap:1.25rem;align-items:flex-start;margin-bottom:1.75rem}
+.con-ic{width:44px;height:44px;border:1px solid rgba(200,150,44,.22);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.1rem}
+.con-lbl{font-size:.63rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.con-val{font-size:.92rem;color:rgba(245,237,224,.7);margin-top:.2rem;font-weight:300}
+.con-tim{font-size:.78rem;color:rgba(245,237,224,.35);margin-top:.2rem}
+.fg{margin-bottom:1.5rem}
+.fg input,.fg textarea,.fg select{width:100%;padding:1.1rem 1.25rem;background:rgba(245,237,224,.04);border:1px solid rgba(200,150,44,.13);color:var(--cream);font-family:var(--font-sans);font-size:.88rem;font-weight:300;outline:none;transition:border-color .3s;resize:none;-webkit-appearance:none;appearance:none}
+.fg input::placeholder,.fg textarea::placeholder{color:rgba(245,237,224,.28)}
+.fg input:focus,.fg textarea:focus{border-color:var(--gold)}
+.fg-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.map-ph{margin-top:2.5rem;height:200px;border:1px solid rgba(200,150,44,.08);background:linear-gradient(135deg,rgba(44,16,8,.5),rgba(13,7,4,.8));display:flex;align-items:center;justify-content:center;flex-direction:column;gap:.75rem}
+.map-ph span{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(200,150,44,.45)}
+
+/* ── ADDRESS ── */
+#address{padding:5rem 4rem;background:var(--matte-black);border-top:1px solid rgba(200,150,44,.07);border-bottom:1px solid rgba(200,150,44,.07)}
+.addr-card{max-width:680px;margin:0 auto;text-align:center;padding:4rem;border:1px solid rgba(200,150,44,.13);position:relative}
+.addr-card::before,.addr-card::after{content:'';position:absolute;width:36px;height:36px;border:1px solid var(--gold)}
+.addr-card::before{top:-1px;left:-1px;border-right:none;border-bottom:none}
+.addr-card::after{bottom:-1px;right:-1px;border-left:none;border-top:none}
+.addr-brand{font-family:var(--font-serif);font-size:2.5rem;font-weight:300;color:var(--cream);letter-spacing:.04em;margin-bottom:.4rem}
+.addr-brand span{color:var(--gold)}
+.addr-sub{font-size:.68rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:2rem}
+.addr-line{font-size:.92rem;color:rgba(245,237,224,.55);font-weight:300;line-height:1.9}
+.addr-badge{display:inline-block;margin-top:2rem;padding:.45rem 1.5rem;border:1px solid rgba(200,150,44,.22);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(200,150,44,.55)}
+
+/* ── FOOTER ── */
+footer{background:var(--matte-black);padding:5rem 4rem 2rem;border-top:1px solid rgba(200,150,44,.07)}
+.ft-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;max-width:1200px;margin:0 auto 4rem}
+.ft-bname{font-family:var(--font-serif);font-size:2rem;font-weight:300;color:var(--cream);margin-bottom:.4rem}
+.ft-bname span{color:var(--gold)}
+.ft-tag{font-size:.78rem;color:rgba(245,237,224,.38);font-style:italic;margin-bottom:1.2rem}
+.ft-nl{display:flex;margin-top:1.5rem}
+.ft-nl input{flex:1;padding:.75rem 1rem;background:rgba(245,237,224,.04);border:1px solid rgba(200,150,44,.12);border-right:none;color:var(--cream);font-family:var(--font-sans);font-size:.78rem;outline:none}
+.ft-nl input::placeholder{color:rgba(245,237,224,.28)}
+.ft-nl button{padding:.75rem 1.2rem;background:var(--gold);border:none;cursor:none;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500;color:var(--matte-black);transition:background .3s;font-family:var(--font-sans)}
+.ft-nl button:hover{background:var(--gold-light)}
+.ft-ct{font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem}
+.ft-ul{list-style:none}
+.ft-ul li{margin-bottom:.7rem}
+.ft-ul a{font-size:.82rem;color:rgba(245,237,224,.45);text-decoration:none;transition:color .3s;font-weight:300}
+.ft-ul a:hover{color:var(--gold-light)}
+.ft-bot{display:flex;justify-content:space-between;align-items:center;max-width:1200px;margin:0 auto;padding-top:2rem;border-top:1px solid rgba(200,150,44,.07);flex-wrap:wrap;gap:1rem}
+.ft-copy{font-size:.72rem;color:rgba(245,237,224,.28)}
+.ft-cred{font-size:.72rem;color:rgba(200,150,44,.5)}
+.btt{width:44px;height:44px;border:1px solid rgba(200,150,44,.22);display:flex;align-items:center;justify-content:center;cursor:none;color:var(--gold);font-size:1.1rem;background:transparent;transition:all .3s}
+.btt:hover{background:var(--gold);color:var(--matte-black)}
+
+/* ── MODALS ── */
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:10000;overflow-y:auto;padding:5rem 2rem}
+.modal.on{display:block}
+.m-close{position:fixed;top:2rem;right:2rem;width:44px;height:44px;border:1px solid rgba(200,150,44,.22);background:transparent;color:var(--cream);font-size:1.4rem;cursor:none;display:flex;align-items:center;justify-content:center;transition:all .3s}
+.m-close:hover{background:var(--gold);color:var(--matte-black)}
+.m-inner{max-width:780px;margin:0 auto;background:var(--deep-cocoa);border:1px solid rgba(200,150,44,.12);padding:4rem}
+.m-title{font-family:var(--font-serif);font-size:2.5rem;font-weight:300;color:var(--cream);margin-bottom:.4rem}
+.m-sub{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:2.5rem}
+.m-body h3{font-family:var(--font-serif);font-size:1.35rem;font-weight:400;color:var(--cream);margin:1.75rem 0 .65rem}
+.m-body p{font-size:.88rem;font-weight:300;color:rgba(245,237,224,.6);line-height:1.85;margin-bottom:.9rem}
+.m-body ul{padding-left:1.5rem}
+.m-body li{font-size:.85rem;font-weight:300;color:rgba(245,237,224,.5);line-height:1.8}
+
+/* RESPONSIVE */
+@media(max-width:1100px){
+  .about-in,.con-in{grid-template-columns:1fr;gap:3rem}
+  .split-fs{grid-template-columns:1fr;min-height:auto}
+  .split-img{height:50vw}
+  .mosaic{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+  .mos-big{grid-row:span 1}
+  .ft-top{grid-template-columns:1fr 1fr}
+  .col-grid{grid-template-columns:1fr 1fr}
+  .p-grid{grid-template-columns:repeat(2,1fr)}
+  .tc{min-width:calc(50% - 1rem)}
+}
+@media(max-width:768px){
+  nav{padding:1rem 1.5rem}
+  nav.s{padding:.75rem 1.5rem}
+  .n-links,.n-cta{display:none}
+  .hbg{display:flex}
+  #hero,#collections,#about,#partners,#social,#testi,#contact,#address,footer{padding-left:1.5rem;padding-right:1.5rem}
+  .vis-strip-over{padding:0 2rem}
+  .split-content{padding:3rem 2rem}
+  .col-grid{grid-template-columns:1fr}
+  .ig-feed{grid-template-columns:repeat(3,1fr)}
+  .tc{min-width:100%}
+  .ft-top{grid-template-columns:1fr;gap:2rem}
+  .ft-bot{flex-direction:column;text-align:center}
+  .soc-link{min-width:100px;padding:1.5rem 1.25rem}
+  .fg-row{grid-template-columns:1fr}
+  .m-inner{padding:2rem}
+  .pq-content{padding:0 1.5rem}
+  .about-img-accent{display:none}
+  .mosaic{grid-template-columns:1fr}
+  .p-grid{grid-template-columns:1fr 1fr}
+}
+a,button{cursor:none}
+</style>
+</head>
+<body>
+
+<div id="cur"></div>
+<div id="cur-r"></div>
+<div id="prog"></div>
+
+<!-- LOADER -->
+<div id="load">
+  <div class="l-logo">ChocoHunt</div>
+  <div class="l-bar-w"><div class="l-bar"></div></div>
+  <div class="l-sub">Crafted for True Chocolate Lovers</div>
+</div>
+
+<!-- MOBILE NAV -->
+<div class="mnav" id="mnav">
+  <a href="#hero" onclick="cMnav()">Home</a>
+  <a href="#collections" onclick="cMnav()">Collections</a>
+  <a href="#about" onclick="cMnav()">About</a>
+  <a href="#partners" onclick="cMnav()">Partners</a>
+  <a href="#testi" onclick="cMnav()">Reviews</a>
+  <a href="#contact" onclick="cMnav()">Contact</a>
+</div>
+
+<!-- NAVBAR -->
+<nav id="nb">
+  <a href="#hero" class="n-logo">Choco<span>Hunt</span></a>
+  <ul class="n-links">
+    <li><a href="#hero">Home</a></li>
+    <li><a href="#collections">Collections</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#partners">Partners</a></li>
+    <li><a href="#testi">Reviews</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#collections" class="n-cta">Shop Now</a>
+  <div class="hbg" id="hbg" onclick="tMnav()"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- ═══════════════════════════════════════════ HERO -->
+<section id="hero">
+  <div class="hero-bg">
+    <img src="https://images.unsplash.com/photo-1481391319762-47dff72954d9?w=1800&auto=format&fit=crop&q=80" alt="Premium dark chocolate bars with cocoa">
+    <div class="hero-bg-grad"></div>
+  </div>
+  <div class="hero-content">
+    <div class="h-eye">Est. 2020 &nbsp;·&nbsp; Premium Handcrafted Chocolates &nbsp;·&nbsp; Pune, India</div>
+    <h1 class="h-title">Where Cocoa<br>Becomes <em>Art</em></h1>
+    <p class="h-sub">Every piece crafted with intention. Every bite, a moment of pure luxury. Discover India's most exquisite handcrafted chocolate collection.</p>
+    <div class="h-btns">
+      <a href="#collections" class="btn-p">Shop Now</a>
+      <a href="#about" class="btn-o">Our Story</a>
+    </div>
+  </div>
+  <div class="h-scroll"><span>Scroll</span><div class="s-line"></div></div>
+</section>
+
+<!-- MARQUEE -->
+<div class="mq" aria-hidden="true">
+  <div class="mq-t" id="mqt">
+    <span class="mq-i">Dark Chocolate Bars <span class="mq-d">◆</span></span>
+    <span class="mq-i">Handcrafted Truffles <span class="mq-d">◆</span></span>
+    <span class="mq-i">Luxury Gift Boxes <span class="mq-d">◆</span></span>
+    <span class="mq-i">Festival Hampers <span class="mq-d">◆</span></span>
+    <span class="mq-i">Limited Editions <span class="mq-d">◆</span></span>
+    <span class="mq-i">Corporate Gifting <span class="mq-d">◆</span></span>
+    <span class="mq-i">Dark Chocolate Bars <span class="mq-d">◆</span></span>
+    <span class="mq-i">Handcrafted Truffles <span class="mq-d">◆</span></span>
+    <span class="mq-i">Luxury Gift Boxes <span class="mq-d">◆</span></span>
+    <span class="mq-i">Festival Hampers <span class="mq-d">◆</span></span>
+    <span class="mq-i">Limited Editions <span class="mq-d">◆</span></span>
+    <span class="mq-i">Corporate Gifting <span class="mq-d">◆</span></span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ GIANT VISUAL STRIP 1 -->
+<div class="vis-strip rv">
+  <img src="https://images.unsplash.com/photo-1548907040-4baa42d10919?w=1800&auto=format&fit=crop&q=80" alt="Handcrafted chocolate truffles close up">
+  <div class="vis-strip-over">
+    <div class="vis-strip-text rv d2">
+      <div class="vs-label">The Craft</div>
+      <h2 class="vs-heading">Made by<br><em>Hand. Always.</em></h2>
+      <p class="vs-body">No machines. No shortcuts. Every truffle, bar, and bonbon is shaped by skilled hands — tempering, moulding, and finishing to perfection.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ COLLECTIONS -->
+<section id="collections">
+  <div class="s-head rv">
+    <span class="s-eye">Our Finest</span>
+    <h2 class="s-title">Premium <em>Collections</em></h2>
+    <div class="divdr"><div class="divdr-l"></div><div class="divdr-d"></div><div class="divdr-l"></div></div>
+    <p class="s-desc">Each piece is a masterwork — hours of craftsmanship poured into every creation.</p>
+  </div>
+
+  <div class="col-grid">
+
+    <!-- 1 Dark Bars -->
+    <div class="cc rv">
+      <img src="https://images.unsplash.com/photo-1611271150737-c14baa5e9d71?w=800&auto=format&fit=crop&q=80" alt="Dark chocolate bars with cocoa powder">
+      <div class="cc-grad"></div>
+      <div class="cc-tag">Bestseller</div>
+      <div class="cc-body">
+        <div class="cc-lbl">Dark Chocolate</div>
+        <div class="cc-name">Noir<br>Collection</div>
+        <div class="cc-desc">Single-origin 72% dark chocolate bars, sourced from finest cocoa plantations worldwide.</div>
+        <button class="cc-qv">Quick View</button>
+      </div>
+    </div>
+
+    <!-- 2 Truffles -->
+    <div class="cc rv d1">
+      <img src="https://images.unsplash.com/photo-1549007994-cb92caebd54b?w=800&auto=format&fit=crop&q=80" alt="Luxury chocolate truffles assortment">
+      <div class="cc-grad"></div>
+      <div class="cc-body">
+        <div class="cc-lbl">Signature</div>
+        <div class="cc-name">Truffle<br>Atelier</div>
+        <div class="cc-desc">Hand-rolled truffles in Belgian chocolate with exotic ganache fillings and gold dust.</div>
+        <button class="cc-qv">Quick View</button>
+      </div>
+    </div>
+
+    <!-- 3 Gift Box -->
+    <div class="cc rv d2">
+      <img src="https://images.unsplash.com/photo-1606312619070-d48b4c652a52?w=800&auto=format&fit=crop&q=80" alt="Luxury chocolate gift box premium">
+      <div class="cc-grad"></div>
+      <div class="cc-tag">Gift</div>
+      <div class="cc-body">
+        <div class="cc-lbl">Luxury Gifting</div>
+        <div class="cc-name">Maison<br>Gift Box</div>
+        <div class="cc-desc">Curated luxury gift boxes for every occasion, wrapped in the finest packaging.</div>
+        <button class="cc-qv">Quick View</button>
+      </div>
+    </div>
+
+    <!-- 4 Festival Hampers -->
+    <div class="cc rv">
+      <img src="https://images.unsplash.com/photo-1571506165871-ee72a35bc9d4?w=800&auto=format&fit=crop&q=80" alt="Chocolate hamper gift basket festive">
+      <div class="cc-grad"></div>
+      <div class="cc-tag">Seasonal</div>
+      <div class="cc-body">
+        <div class="cc-lbl">Festive</div>
+        <div class="cc-name">Festival<br>Hampers</div>
+        <div class="cc-desc">Celebrate every festival with bespoke chocolate hampers, crafted with love and artistry.</div>
+        <button class="cc-qv">Quick View</button>
+      </div>
+    </div>
+
+    <!-- 5 Velvet -->
+    <div class="cc rv d1">
+      <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=800&auto=format&fit=crop&q=80" alt="Milk and white chocolate bars premium">
+      <div class="cc-grad"></div>
+      <div class="cc-body">
+        <div class="cc-lbl">Milk & White</div>
+        <div class="cc-name">Velvet<br>Series</div>
+        <div class="cc-desc">Creamy milk and white chocolate varieties with premium natural flavours and fruits.</div>
+        <button class="cc-qv">Quick View</button>
+      </div>
+    </div>
+
+    <!-- 6 Limited -->
+    <div class="cc rv d2">
+      <img src="https://images.unsplash.com/photo-1587132137056-bfbf0166836e?w=800&auto=format&fit=crop&q=80" alt="Limited edition chocolate box premium">
+      <div class="cc-grad"></div>
+      <div class="cc-tag">Limited</div>
+      <div class="cc-body">
+        <div class="cc-lbl">Exclusive</div>
+        <div class="cc-name">Limited<br>Edition</div>
+        <div class="cc-desc">Rare seasonal releases and collector editions for the true chocolate connoisseur.</div>
+        <button class="cc-qv">Quick View</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ SPLIT FULLSCREEN: CRAFTSMANSHIP -->
+<div class="split-fs rv">
+  <div class="split-img">
+    <img src="https://images.unsplash.com/photo-1599599810769-bcde5a160d32?w=900&auto=format&fit=crop&q=80" alt="Chocolatier hand crafting chocolate">
+    <div class="split-img-over"></div>
+  </div>
+  <div class="split-content rv d2">
+    <span class="sp-eye">Our Philosophy</span>
+    <h2 class="sp-title">Born from a<br><em>love of cocoa.</em></h2>
+    <p class="sp-body">ChocoHunt was founded in Pune with one belief: that chocolate is not a snack — it is an experience. We source the rarest cocoa from across the globe and transform it in our Kothrud atelier.</p>
+    <p class="sp-body">Every bar, truffle, and gift box is a testament to our uncompromising commitment to quality — from bean selection to final packaging.</p>
+    <div class="sp-stats">
+      <div><div class="sp-num">50+</div><div class="sp-lbl">Varieties</div></div>
+      <div><div class="sp-num">12K+</div><div class="sp-lbl">Happy Clients</div></div>
+      <div><div class="sp-num">100%</div><div class="sp-lbl">Handcrafted</div></div>
+    </div>
+    <a href="#contact" class="btn-o">Get in Touch</a>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ GIANT VISUAL STRIP 2: COCOA ORIGIN -->
+<div class="vis-strip rv" style="height:65vh">
+  <img src="https://images.unsplash.com/photo-1511381939415-e44515f1d81d?w=1800&auto=format&fit=crop&q=80" alt="Cocoa beans and dark chocolate premium">
+  <div class="vis-strip-over" style="background:linear-gradient(to left,rgba(13,7,4,.8) 0%,rgba(13,7,4,.2) 50%,transparent 100%);justify-content:flex-end;padding:0 8rem">
+    <div class="vis-strip-text rv d2" style="text-align:right">
+      <div class="vs-label">The Source</div>
+      <h2 class="vs-heading">Finest Cocoa.<br><em>Every Time.</em></h2>
+      <p class="vs-body">We trace every bean to its origin. Ecuador, Madagascar, Ghana — only the best makes it to our atelier. The terroir of each origin speaks through every bite.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ PHOTO MOSAIC -->
+<div class="mosaic rv">
+  <div class="mos-cell mos-big">
+    <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=900&auto=format&fit=crop&q=80" alt="Dark chocolate pour melted luxury">
+    <div class="mos-over"></div>
+    <div class="mos-label"><span>The Process</span></div>
+  </div>
+  <div class="mos-cell">
+    <img src="https://images.unsplash.com/photo-1548907040-4baa42d10919?w=600&auto=format&fit=crop&q=80" alt="Chocolate truffles close up">
+    <div class="mos-over"></div>
+    <div class="mos-label"><span>Truffles</span></div>
+  </div>
+  <div class="mos-cell">
+    <img src="https://images.unsplash.com/photo-1481391319762-47dff72954d9?w=600&auto=format&fit=crop&q=80" alt="Chocolate bars arranged dark cocoa">
+    <div class="mos-over"></div>
+    <div class="mos-label"><span>Dark Bars</span></div>
+  </div>
+  <div class="mos-cell">
+    <img src="https://images.unsplash.com/photo-1569542763096-1530f0b3a40a?w=600&auto=format&fit=crop&q=80" alt="Chocolate bonbons glossy premium">
+    <div class="mos-over"></div>
+    <div class="mos-label"><span>Bonbons</span></div>
+  </div>
+  <div class="mos-cell">
+    <img src="https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?w=600&auto=format&fit=crop&q=80" alt="Luxury chocolate box gift premium">
+    <div class="mos-over"></div>
+    <div class="mos-label"><span>Gift Boxes</span></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ ABOUT -->
+<section id="about">
+  <div class="about-in">
+    <div class="about-vis rv">
+      <div class="about-img-main">
+        <img src="https://images.unsplash.com/photo-1600189020440-8695acb4f9e9?w=800&auto=format&fit=crop&q=80" alt="Artisan chocolatier crafting premium chocolate">
+      </div>
+      <div class="about-img-accent">
+        <img src="https://images.unsplash.com/photo-1511381939415-e44515f1d81d?w=400&auto=format&fit=crop&q=80" alt="Cocoa beans origin chocolate">
+      </div>
+      <div class="about-bar">Since 2020 · Kothrud Atelier</div>
+    </div>
+    <div class="rv d2">
+      <span class="s-eye">Our Story</span>
+      <div class="about-quote">Born from a <em>passion</em> for the world's finest cocoa.</div>
+      <p class="about-p">ChocoHunt began with a simple belief: that chocolate is not just a treat — it is an emotion, a memory, a moment of pure joy. We source the rarest cocoa beans from across the globe and transform them into handcrafted masterpieces in our Pune atelier.</p>
+      <p class="about-p">Every truffle and gift box is a testament to uncompromising quality. From tempering to packaging, each step is carried out with artisanal care and luxury attention to detail.</p>
+      <div class="about-stats">
+        <div><div class="a-num">50+</div><div class="a-lbl">Varieties</div></div>
+        <div><div class="a-num">12K+</div><div class="a-lbl">Happy Clients</div></div>
+        <div><div class="a-num">100%</div><div class="a-lbl">Handcrafted</div></div>
+      </div>
+      <a href="#contact" class="btn-o">Discover More</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ PARALLAX QUOTE SECTION -->
+<div class="pq-section rv">
+  <div class="pq-bg">
+    <img src="https://images.unsplash.com/photo-1610450949065-1f2841536c88?w=1800&auto=format&fit=crop&q=80" alt="Melted dark chocolate flow background">
+  </div>
+  <div class="pq-over"></div>
+  <div class="pq-content rv d1">
+    <div class="pq-quote">"Chocolate is not just a flavour — it is a <strong>feeling,</strong> a memory, an act of love for yourself and the people who matter most."</div>
+    <div class="pq-attr">— ChocoHunt Atelier, Pune</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ RETAIL PARTNERS -->
+<section id="partners">
+  <div class="s-head rv">
+    <span class="s-eye">Trusted By</span>
+    <h2 class="s-title">Retail <em>Partners</em></h2>
+    <div class="divdr"><div class="divdr-l"></div><div class="divdr-d"></div><div class="divdr-l"></div></div>
+  </div>
+  <div class="p-grid rv">
+    <div class="p-card"><div class="p-name">Westside</div><div class="p-type">Premium Retail</div></div>
+    <div class="p-card"><div class="p-name">Foodhall</div><div class="p-type">Gourmet Stores</div></div>
+    <div class="p-card"><div class="p-name">Spencer's</div><div class="p-type">Hypermarkets</div></div>
+    <div class="p-card"><div class="p-name">Nature's Basket</div><div class="p-type">Gourmet Retail</div></div>
+    <div class="p-card"><div class="p-name">Godrej</div><div class="p-type">Corporate Gifting</div></div>
+    <div class="p-card"><div class="p-name">Le Marché</div><div class="p-type">Luxury Stores</div></div>
+    <div class="p-card"><div class="p-name">Brew & Bites</div><div class="p-type">Café Network</div></div>
+    <div class="p-card"><div class="p-name">Taj Hotels</div><div class="p-type">Hospitality</div></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ GIANT VISUAL STRIP 3: GIFTING -->
+<div class="vis-strip rv" style="height:60vh">
+  <img src="https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?w=1800&auto=format&fit=crop&q=80" alt="Luxury chocolate gift box presentation premium">
+  <div class="vis-strip-over">
+    <div class="vis-strip-text rv d2">
+      <div class="vs-label">Gifting</div>
+      <h2 class="vs-heading">The Gift<br><em>of Joy.</em></h2>
+      <p class="vs-body">From intimate birthdays to grand corporate hampers — ChocoHunt's gifting range turns every occasion into an unforgettable memory.</p>
+      <a href="#contact" class="btn-p" style="margin-top:1.5rem;display:inline-block">Order Now</a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ SOCIAL MEDIA -->
+<section id="social">
+  <div class="s-head rv">
+    <span class="s-eye">Follow the Journey</span>
+    <h2 class="s-title">We're on <em>Social</em></h2>
+  </div>
+  <div class="soc-links rv">
+    <a href="#" class="soc-link"><div class="soc-ico">📸</div><div class="soc-plat">Instagram</div><div class="soc-cnt">48.2K</div></a>
+    <a href="#" class="soc-link"><div class="soc-ico">📘</div><div class="soc-plat">Facebook</div><div class="soc-cnt">31.5K</div></a>
+    <a href="#" class="soc-link"><div class="soc-ico">▶️</div><div class="soc-plat">YouTube</div><div class="soc-cnt">12.8K</div></a>
+    <a href="#" class="soc-link"><div class="soc-ico">📌</div><div class="soc-plat">Pinterest</div><div class="soc-cnt">22.1K</div></a>
+    <a href="#" class="soc-link"><div class="soc-ico">𝕏</div><div class="soc-plat">X / Twitter</div><div class="soc-cnt">8.4K</div></a>
+  </div>
+  <!-- Instagram-style real photo feed -->
+  <div class="ig-feed rv">
+    <div class="ig-cell"><img src="https://images.unsplash.com/photo-1548907040-4baa42d10919?w=400&auto=format&fit=crop&q=75" alt="Chocolate truffles"><div class="ig-cell-ov"><span>View</span></div></div>
+    <div class="ig-cell"><img src="https://images.unsplash.com/photo-1611271150737-c14baa5e9d71?w=400&auto=format&fit=crop&q=75" alt="Dark chocolate bars"><div class="ig-cell-ov"><span>View</span></div></div>
+    <div class="ig-cell"><img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=400&auto=format&fit=crop&q=75" alt="Melted chocolate"><div class="ig-cell-ov"><span>View</span></div></div>
+    <div class="ig-cell"><img src="https://images.unsplash.com/photo-1569542763096-1530f0b3a40a?w=400&auto=format&fit=crop&q=75" alt="Chocolate bonbons"><div class="ig-cell-ov"><span>View</span></div></div>
+    <div class="ig-cell"><img src="https://images.unsplash.com/photo-1511381939415-e44515f1d81d?w=400&auto=format&fit=crop&q=75" alt="Cocoa beans"><div class="ig-cell-ov"><span>View</span></div></div>
+    <div class="ig-cell"><img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=400&auto=format&fit=crop&q=75" alt="White chocolate premium"><div class="ig-cell-ov"><span>View</span></div></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ TESTIMONIALS -->
+<section id="testi">
+  <div class="s-head rv">
+    <span class="s-eye">What People Say</span>
+    <h2 class="s-title">Voices of <em>Delight</em></h2>
+  </div>
+  <div class="testi-w rv">
+    <div class="testi-t" id="tt">
+      <div class="tc"><div class="tc-stars">★★★★★</div><div class="tc-text">"The dark chocolate truffle collection is unlike anything I've had in India. Pure luxury in every bite — I order it every month without fail."</div><div class="tc-auth"><div class="tc-av">PR</div><div><div class="tc-name">Priya Rathod</div><div class="tc-loc">Mumbai · Corporate Client</div></div></div></div>
+      <div class="tc"><div class="tc-stars">★★★★★</div><div class="tc-text">"Ordered a festival hamper for Diwali gifting to our entire team. The presentation was breathtaking and every single person absolutely loved it."</div><div class="tc-auth"><div class="tc-av">AK</div><div><div class="tc-name">Arvind Kulkarni</div><div class="tc-loc">Pune · Business Owner</div></div></div></div>
+      <div class="tc"><div class="tc-stars">★★★★★</div><div class="tc-text">"ChocoHunt's gift box was the most beautiful thing I've gifted my mother. She couldn't believe how exquisite the packaging and chocolates were."</div><div class="tc-auth"><div class="tc-av">SN</div><div><div class="tc-name">Sneha Nair</div><div class="tc-loc">Bangalore · Individual</div></div></div></div>
+      <div class="tc"><div class="tc-stars">★★★★★</div><div class="tc-text">"The 72% dark chocolate bars are sophisticated and complex. Finally a brand that takes chocolate as seriously as wine — stunning craft."</div><div class="tc-auth"><div class="tc-av">VM</div><div><div class="tc-name">Varun Mehta</div><div class="tc-loc">Delhi · Chocolatier</div></div></div></div>
+      <div class="tc"><div class="tc-stars">★★★★★</div><div class="tc-text">"We use ChocoHunt for all our hotel welcome amenities. Guests are always impressed. A product that truly matches a 5-star experience."</div><div class="tc-auth"><div class="tc-av">RD</div><div><div class="tc-name">Rohan D'Souza</div><div class="tc-loc">Goa · Hospitality</div></div></div></div>
+    </div>
+    <div class="testi-nav">
+      <button class="tb" id="tprev">&#8592;</button>
+      <button class="tb" id="tnext">&#8594;</button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ CONTACT -->
+<section id="contact">
+  <div class="s-head rv">
+    <span class="s-eye">Reach Us</span>
+    <h2 class="s-title">Let's <em>Connect</em></h2>
+  </div>
+  <div class="con-in">
+    <div class="rv">
+      <div class="con-title">We'd love to<br>hear <em>from you.</em></div>
+      <div class="con-det"><div class="con-ic">📍</div><div><div class="con-lbl">Address</div><div class="con-val">ChocoHunt Atelier, Kothrud, Pune — 411038, Maharashtra</div></div></div>
+      <div class="con-det"><div class="con-ic">📞</div><div><div class="con-lbl">Phone</div><div class="con-val">+91 98765 43210</div><div class="con-tim">Mon – Sat, 10am – 7pm IST</div></div></div>
+      <div class="con-det"><div class="con-ic">✉️</div><div><div class="con-lbl">Email</div><div class="con-val">hello@chocohunt.in</div><div class="con-tim">We respond within 24 hours</div></div></div>
+      <div class="map-ph"><span>📍</span><span>Kothrud, Pune, Maharashtra</span><span style="font-size:.58rem;color:rgba(200,150,44,.28)">Google Maps Integration</span></div>
+    </div>
+    <div class="rv d2">
+      <div class="fg-row"><div class="fg"><input type="text" placeholder="Your Name"></div><div class="fg"><input type="email" placeholder="Email Address"></div></div>
+      <div class="fg"><input type="tel" placeholder="Phone Number"></div>
+      <div class="fg"><select style="width:100%;padding:1.1rem 1.25rem;background:rgba(245,237,224,.04);border:1px solid rgba(200,150,44,.13);color:rgba(245,237,224,.45);font-family:var(--font-sans);font-size:.88rem;outline:none;-webkit-appearance:none"><option value="" disabled selected>What are you looking for?</option><option>Retail Purchase</option><option>Corporate Gifting</option><option>Festival Hampers</option><option>Retail Partnership</option><option>Other Enquiry</option></select></div>
+      <div class="fg"><textarea rows="5" placeholder="Your Message"></textarea></div>
+      <button class="btn-p" style="width:100%" onclick="fSub(this)">Send Message</button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ ADDRESS -->
+<section id="address">
+  <div class="addr-card rv">
+    <div class="addr-brand">Choco<span>Hunt</span></div>
+    <div class="addr-sub">Premium Handcrafted Chocolates · Pune, India</div>
+    <div class="divdr"><div class="divdr-l"></div><div class="divdr-d"></div><div class="divdr-l"></div></div>
+    <div class="addr-line" style="margin-top:1.5rem">
+      ChocoHunt Atelier · Kothrud, Pune — 411038<br>
+      Maharashtra, India<br>
+      +91 98765 43210 &nbsp;·&nbsp; hello@chocohunt.in
+    </div>
+    <div class="addr-badge">Managed &amp; Designed by LeadKnight</div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ FOOTER -->
+<footer>
+  <div class="ft-top">
+    <div>
+      <div class="ft-bname">Choco<span>Hunt</span></div>
+      <div class="ft-tag">Crafted for True Chocolate Lovers</div>
+      <p style="font-size:.8rem;font-weight:300;color:rgba(245,237,224,.38);max-width:280px;line-height:1.7">Handcrafted premium chocolates from Pune. Every piece tells a story of passion, craft, and the finest cocoa.</p>
+      <div class="ft-nl"><input type="email" placeholder="Your email for updates"><button>Subscribe</button></div>
+    </div>
+    <div>
+      <div class="ft-ct">Navigate</div>
+      <ul class="ft-ul">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#collections">Collections</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#partners">Partners</a></li>
+        <li><a href="#testi">Reviews</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="ft-ct">Collections</div>
+      <ul class="ft-ul">
+        <li><a href="#">Dark Chocolate Bars</a></li>
+        <li><a href="#">Truffle Atelier</a></li>
+        <li><a href="#">Maison Gift Boxes</a></li>
+        <li><a href="#">Festival Hampers</a></li>
+        <li><a href="#">Velvet Series</a></li>
+        <li><a href="#">Limited Edition</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="ft-ct">Legal</div>
+      <ul class="ft-ul">
+        <li><a href="#" onclick="oMod('privacy');return false">Privacy Policy</a></li>
+        <li><a href="#" onclick="oMod('terms');return false">Terms & Conditions</a></li>
+        <li><a href="#" onclick="oMod('shipping');return false">Shipping Policy</a></li>
+        <li><a href="#" onclick="oMod('refund');return false">Refund Policy</a></li>
+      </ul>
+      <div style="margin-top:2rem">
+        <div class="ft-ct">Social</div>
+        <div style="display:flex;gap:.65rem;margin-top:.7rem">
+          <a href="#" style="width:34px;height:34px;border:1px solid rgba(200,150,44,.18);display:flex;align-items:center;justify-content:center;color:rgba(200,150,44,.55);text-decoration:none;font-size:.82rem;transition:all .3s" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='rgba(200,150,44,.18)';this.style.color='rgba(200,150,44,.55)'">IG</a>
+          <a href="#" style="width:34px;height:34px;border:1px solid rgba(200,150,44,.18);display:flex;align-items:center;justify-content:center;color:rgba(200,150,44,.55);text-decoration:none;font-size:.82rem;transition:all .3s" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='rgba(200,150,44,.18)';this.style.color='rgba(200,150,44,.55)'">FB</a>
+          <a href="#" style="width:34px;height:34px;border:1px solid rgba(200,150,44,.18);display:flex;align-items:center;justify-content:center;color:rgba(200,150,44,.55);text-decoration:none;font-size:.82rem;transition:all .3s" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='rgba(200,150,44,.18)';this.style.color='rgba(200,150,44,.55)'">YT</a>
+          <a href="#" style="width:34px;height:34px;border:1px solid rgba(200,150,44,.18);display:flex;align-items:center;justify-content:center;color:rgba(200,150,44,.55);text-decoration:none;font-size:.82rem;transition:all .3s" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='rgba(200,150,44,.18)';this.style.color='rgba(200,150,44,.55)'">𝕏</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ft-bot">
+    <div class="ft-copy">© 2024 ChocoHunt. All rights reserved.</div>
+    <div class="ft-cred">Designed & Managed by LeadKnight</div>
+    <button class="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  </div>
+</footer>
+
+<!-- MODALS -->
+<div class="modal" id="modal-privacy"><button class="m-close" onclick="cMod('privacy')">✕</button><div class="m-inner"><div class="m-title">Privacy Policy</div><div class="m-sub">Last Updated: January 2024</div><div class="m-body"><h3>1. Information We Collect</h3><p>We collect information you provide directly — name, email, phone, delivery address, and payment information when placing orders or creating accounts.</p><h3>2. How We Use Your Information</h3><p>To process orders, send confirmations, provide customer support, send marketing communications (with consent), and improve our products and services.</p><h3>3. Cookies</h3><p>Our website uses cookies to enhance browsing, analyze traffic, and personalize content. You can control settings through your browser.</p><h3>4. Your Rights</h3><ul><li>Right to access your personal data</li><li>Right to correct inaccurate information</li><li>Right to request deletion of your data</li><li>Right to opt out of marketing communications</li></ul><h3>5. Contact</h3><p>For privacy concerns: privacy@chocohunt.in or +91 98765 43210</p></div></div></div>
+
+<div class="modal" id="modal-terms"><button class="m-close" onclick="cMod('terms')">✕</button><div class="m-inner"><div class="m-title">Terms & Conditions</div><div class="m-sub">Last Updated: January 2024</div><div class="m-body"><h3>1. Acceptance of Terms</h3><p>By accessing ChocoHunt's website, you accept and agree to be bound by these Terms. If you do not agree, please do not use our website.</p><h3>2. Product Orders</h3><p>All orders are subject to product availability. We reserve the right to refuse or cancel orders. Payment must be received before orders are processed.</p><h3>3. Intellectual Property</h3><p>All content including text, graphics, logos, and images are the property of ChocoHunt and protected by applicable IP laws.</p><h3>4. Governing Law</h3><p>These terms are governed by the laws of Maharashtra, India. Disputes shall be subject to courts in Pune.</p></div></div></div>
+
+<div class="modal" id="modal-shipping"><button class="m-close" onclick="cMod('shipping')">✕</button><div class="m-inner"><div class="m-title">Shipping Policy</div><div class="m-sub">Last Updated: January 2024</div><div class="m-body"><h3>Processing Time</h3><p>All orders processed within 1-2 business days. Orders after 2pm IST processed the following day.</p><h3>Delivery Timelines</h3><ul><li>Pune: Same day / Next day available</li><li>Maharashtra: 2-3 business days</li><li>Pan India: 3-5 business days</li></ul><h3>Packaging</h3><p>All chocolates packed in temperature-controlled packaging to ensure integrity during transit.</p><h3>Charges</h3><p>Free shipping on orders above ₹1,500. Standard ₹99 below this threshold.</p></div></div></div>
+
+<div class="modal" id="modal-refund"><button class="m-close" onclick="cMod('refund')">✕</button><div class="m-inner"><div class="m-title">Refund Policy</div><div class="m-sub">Last Updated: January 2024</div><div class="m-body"><h3>Return Eligibility</h3><p>Due to perishable nature, we accept returns only for damaged goods, incorrect items, or quality issues. Claims within 24 hours of delivery.</p><h3>How to Raise a Claim</h3><ul><li>Email hello@chocohunt.in with your order number</li><li>Attach photographs of the damaged product</li></ul><h3>Resolution</h3><p>Claims reviewed within 24 hours. Refunds processed within 5-7 business days.</p></div></div></div>
+
+<script>
+// CURSOR
+const cur=document.getElementById('cur'),curR=document.getElementById('cur-r');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
+(function aR(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;curR.style.left=rx+'px';curR.style.top=ry+'px';requestAnimationFrame(aR)})();
+document.querySelectorAll('a,button,.cc,.p-card,.soc-link,.tc,.ig-cell,.mos-cell').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cur.style.transform='translate(-50%,-50%) scale(2)';curR.style.transform='translate(-50%,-50%) scale(1.5)';curR.style.borderColor='rgba(200,150,44,.85)'});
+  el.addEventListener('mouseleave',()=>{cur.style.transform='translate(-50%,-50%) scale(1)';curR.style.transform='translate(-50%,-50%) scale(1)';curR.style.borderColor='rgba(200,150,44,.5)'});
+});
+
+// LOADER
+window.addEventListener('load',()=>{setTimeout(()=>document.getElementById('load').classList.add('gone'),2300)});
+
+// NAVBAR
+const nb=document.getElementById('nb');
+window.addEventListener('scroll',()=>nb.classList.toggle('s',window.scrollY>60));
+
+// PROGRESS
+window.addEventListener('scroll',()=>{const d=document.documentElement.scrollHeight-window.innerHeight;document.getElementById('prog').style.width=(window.scrollY/d*100)+'%'});
+
+// REVEAL
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on')}),{threshold:.1});
+document.querySelectorAll('.rv').forEach(r=>obs.observe(r));
+
+// MOBILE NAV
+function tMnav(){document.getElementById('mnav').classList.toggle('open')}
+function cMnav(){document.getElementById('mnav').classList.remove('open')}
+
+// TESTIMONIALS
+let ti=0;
+const tt=document.getElementById('tt');
+function vc(){const w=window.innerWidth;return w<768?1:w<1100?2:3}
+function slide(d){const v=vc(),m=tt.children.length-v;ti=Math.max(0,Math.min(m,ti+d));const cw=tt.parentElement.offsetWidth/v;tt.style.transform=`translateX(-${ti*cw}px)`}
+document.getElementById('tprev').onclick=()=>slide(-1);
+document.getElementById('tnext').onclick=()=>slide(1);
+
+// MODALS
+function oMod(t){document.getElementById('modal-'+t).classList.add('on');document.body.style.overflow='hidden'}
+function cMod(t){document.getElementById('modal-'+t).classList.remove('on');document.body.style.overflow=''}
+
+// PARALLAX on pq-bg
+window.addEventListener('scroll',()=>{const el=document.querySelector('.pq-bg');if(!el)return;const rect=el.parentElement.getBoundingClientRect();const offset=rect.top*0.3;el.style.transform=`translateY(${offset}px)`});
+
+// FORM
+function fSub(btn){btn.textContent='Message Sent ✓';btn.style.background='rgba(200,150,44,.25)';btn.style.color='var(--gold)';setTimeout(()=>{btn.textContent='Send Message';btn.style.background='var(--gold)';btn.style.color='var(--matte-black)'},3000)}
+</script>
+</body>
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Collections — ChocoHunt</title>
+<meta name="description" content="Explore ChocoHunt's premium chocolate collections — dark bars, truffles, gift boxes, festival hampers, velvet series, and limited editions.">
+<link rel="stylesheet" href="assets/css/style.css">
+<script>(function(){const t=localStorage.getItem('ch-theme')||'dark';document.documentElement.setAttribute('data-theme',t);})();</script>
+<style>
+.filter-bar{display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center;margin-bottom:3.5rem}
+.filter-btn{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;padding:.55rem 1.4rem;border:1px solid var(--border);background:transparent;color:var(--text-muted);cursor:none;transition:all .3s}
+.filter-btn:hover,.filter-btn.active{background:var(--gold);color:#0d0704;border-color:var(--gold)}
+.cc-price{font-family:var(--font-serif);font-size:1.1rem;color:var(--gold);margin-bottom:.5rem}
+</style>
+</head>
+<body>
+<div id="cursor"></div><div id="cursor-ring"></div><div id="scroll-progress"></div>
+<div id="page-loader"><div class="loader-logo-text">Choco<span>Hunt</span></div><div class="loader-bar-track"><div class="loader-bar-fill"></div></div><div class="loader-tag">Our Collections</div></div>
+
+<div class="mobile-nav" id="mobile-nav">
+  <a href="home.html">Home</a><a href="collection.html">Collections</a><a href="about.html">About</a><a href="partners.html">Partners</a><a href="reviews.html">Reviews</a><a href="contacts.html">Contact</a>
+  <div class="mobile-nav-actions"><button class="theme-toggle">☀️</button><button class="btn-login" data-auth-open="login">Login</button></div>
+</div>
+
+<nav id="navbar">
+  <a href="home.html" class="nav-logo">Choco<span>Hunt</span></a>
+  <ul class="nav-links">
+    <li><a href="home.html">Home</a></li><li><a href="collection.html" class="active">Collections</a></li><li><a href="about.html">About</a></li><li><a href="partners.html">Partners</a></li><li><a href="reviews.html">Reviews</a></li><li><a href="contacts.html">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="theme-toggle">☀️</button>
+    <div class="auth-logged-out" style="display:flex;gap:.75rem"><button class="btn-login" data-auth-open="login">Login</button><button class="btn-nav-cta" data-auth-open="register">Sign Up</button></div>
+    <div class="auth-logged-in" style="display:none;gap:.75rem;align-items:center"><div class="nav-user"><div class="nav-user-dot"></div><span class="nav-user-name">User</span></div><button class="btn-logout" data-logout>Logout</button></div>
+  </div>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="hero-bg-img"><img src="https://images.unsplash.com/photo-1606312619070-d48b4c652a52?w=1800&auto=format&fit=crop&q=80" alt="Chocolate collection"><div class="hero-bg-grad"></div></div>
+  <div class="page-hero-content">
+    <span class="s-eyebrow" style="display:block;margin-bottom:1rem">Discover</span>
+    <h1 class="page-hero-title">Our <em>Collections</em></h1>
+    <p class="page-hero-sub">Handcrafted with love. Finished with precision. Made for you.</p>
+  </div>
+</div>
+
+<!-- MARQUEE -->
+<div class="marquee-band" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-item">Dark Chocolate Bars <span class="marquee-dot">◆</span></span><span class="marquee-item">Handcrafted Truffles <span class="marquee-dot">◆</span></span><span class="marquee-item">Luxury Gift Boxes <span class="marquee-dot">◆</span></span><span class="marquee-item">Festival Hampers <span class="marquee-dot">◆</span></span><span class="marquee-item">Limited Editions <span class="marquee-dot">◆</span></span><span class="marquee-item">Corporate Gifting <span class="marquee-dot">◆</span></span><span class="marquee-item">Dark Chocolate Bars <span class="marquee-dot">◆</span></span><span class="marquee-item">Handcrafted Truffles <span class="marquee-dot">◆</span></span><span class="marquee-item">Luxury Gift Boxes <span class="marquee-dot">◆</span></span><span class="marquee-item">Festival Hampers <span class="marquee-dot">◆</span></span><span class="marquee-item">Limited Editions <span class="marquee-dot">◆</span></span><span class="marquee-item">Corporate Gifting <span class="marquee-dot">◆</span></span>
+  </div>
+</div>
+
+<!-- COLLECTIONS -->
+<section class="section-pad" style="background:linear-gradient(180deg,var(--bg-primary),var(--bg-secondary))">
+  <div class="section-head reveal">
+    <span class="s-eyebrow">All Collections</span>
+    <h2 class="s-title">Premium <em>Chocolates</em></h2>
+    <div class="gold-divider"><div class="gd-line"></div><div class="gd-diamond"></div><div class="gd-line"></div></div>
+  </div>
+  <!-- FILTER BAR -->
+  <div class="filter-bar reveal">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="dark">Dark</button>
+    <button class="filter-btn" data-filter="truffle">Truffles</button>
+    <button class="filter-btn" data-filter="gift">Gifting</button>
+    <button class="filter-btn" data-filter="festive">Festive</button>
+    <button class="filter-btn" data-filter="milk">Milk &amp; White</button>
+    <button class="filter-btn" data-filter="limited">Limited</button>
+  </div>
+  <div class="collections-grid" id="col-grid">
+    <!-- 1 -->
+    <div class="choco-card reveal" data-cat="dark">
+      <img src="https://images.unsplash.com/photo-1611271150737-c14baa5e9d71?w=800&auto=format&fit=crop&q=80" alt="Dark chocolate bars">
+      <div class="card-gradient"></div><span class="card-tag-badge">Bestseller</span>
+      <div class="card-body">
+        <div class="card-label">Dark Chocolate</div><div class="card-name">Noir Collection</div>
+        <div class="cc-price">From ₹ 450</div>
+        <div class="card-desc">Single-origin 72% dark chocolate bars, sourced from the finest cocoa plantations worldwide.</div>
+        <button class="card-qv" onclick="addToEnquiry('Noir Collection')">Add to Enquiry</button>
+      </div>
+    </div>
+    <!-- 2 -->
+    <div class="choco-card reveal delay-1" data-cat="truffle">
+      <img src="https://images.unsplash.com/photo-1549007994-cb92caebd54b?w=800&auto=format&fit=crop&q=80" alt="Luxury truffles">
+      <div class="card-gradient"></div>
+      <div class="card-body">
+        <div class="card-label">Signature</div><div class="card-name">Truffle Atelier</div>
+        <div class="cc-price">From ₹ 650</div>
+        <div class="card-desc">Hand-rolled truffles in Belgian chocolate with exotic ganache fillings and edible gold dust.</div>
+        <button class="card-qv" onclick="addToEnquiry('Truffle Atelier')">Add to Enquiry</button>
+      </div>
+    </div>
+    <!-- 3 -->
+    <div class="choco-card reveal delay-2" data-cat="gift">
+      <img src="https://images.unsplash.com/photo-1606312619070-d48b4c652a52?w=800&auto=format&fit=crop&q=80" alt="Luxury gift box">
+      <div class="card-gradient"></div><span class="card-tag-badge">Gift</span>
+      <div class="card-body">
+        <div class="card-label">Luxury Gifting</div><div class="card-name">Maison Gift Box</div>
+        <div class="cc-price">From ₹ 1,200</div>
+        <div class="card-desc">Curated luxury gift boxes for every occasion, wrapped in the finest bespoke packaging.</div>
+        <button class="card-qv" onclick="addToEnquiry('Maison Gift Box')">Add to Enquiry</button>
+      </div>
+    </div>
+    <!-- 4 -->
+    <div class="choco-card reveal" data-cat="festive">
+      <img src="https://images.unsplash.com/photo-1571506165871-ee72a35bc9d4?w=800&auto=format&fit=crop&q=80" alt="Festival hamper">
+      <div class="card-gradient"></div><span class="card-tag-badge">Seasonal</span>
+      <div class="card-body">
+        <div class="card-label">Festive</div><div class="card-name">Festival Hampers</div>
+        <div class="cc-price">From ₹ 2,500</div>
+        <div class="card-desc">Bespoke chocolate hampers for Diwali, Christmas, Eid, and every celebration worth cherishing.</div>
+        <button class="card-qv" onclick="addToEnquiry('Festival Hampers')">Add to Enquiry</button>
+      </div>
+    </div>
+    <!-- 5 -->
+    <div class="choco-card reveal delay-1" data-cat="milk">
+      <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=800&auto=format&fit=crop&q=80" alt="Milk chocolate">
+      <div class="card-gradient"></div>
+      <div class="card-body">
+        <div class="card-label">Milk &amp; White</div><div class="card-name">Velvet Series</div>
+        <div class="cc-price">From ₹ 380</div>
+        <div class="card-desc">Creamy milk and white chocolate varieties with premium natural flavours and exotic fruits.</div>
+        <button class="card-qv" onclick="addToEnquiry('Velvet Series')">Add to Enquiry</button>
+      </div>
+    </div>
+    <!-- 6 -->
+    <div class="choco-card reveal delay-2" data-cat="limited">
+      <img src="https://images.unsplash.com/photo-1587132137056-bfbf0166836e?w=800&auto=format&fit=crop&q=80" alt="Limited edition">
+      <div class="card-gradient"></div><span class="card-tag-badge">Limited</span>
+      <div class="card-body">
+        <div class="card-label">Exclusive</div><div class="card-name">Limited Edition</div>
+        <div class="cc-price">From ₹ 1,800</div>
+        <div class="card-desc">Rare seasonal releases and collector editions for the true chocolate connoisseur.</div>
+        <button class="card-qv" onclick="addToEnquiry('Limited Edition')">Add to Enquiry</button>
+      </div>
+    </div>
+    <!-- 7 -->
+    <div class="choco-card reveal" data-cat="dark">
+      <img src="https://images.unsplash.com/photo-1599599810769-bcde5a160d32?w=800&auto=format&fit=crop&q=80" alt="Artisan dark chocolate">
+      <div class="card-gradient"></div>
+      <div class="card-body">
+        <div class="card-label">Artisan Dark</div><div class="card-name">Grand Cru Bars</div>
+        <div class="cc-price">From ₹ 550</div>
+        <div class="card-desc">85% single-origin grand cru bars with tasting notes of fruit, spice, and deep earth.</div>
+        <button class="card-qv" onclick="addToEnquiry('Grand Cru Bars')">Add to Enquiry</button>
+      </div>
+    </div>
+    <!-- 8 -->
+    <div class="choco-card reveal delay-1" data-cat="gift">
+      <img src="https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?w=800&auto=format&fit=crop&q=80" alt="Corporate gifting">
+      <div class="card-gradient"></div><span class="card-tag-badge">Corporate</span>
+      <div class="card-body">
+        <div class="card-label">Corporate</div><div class="card-name">Business Hamper</div>
+        <div class="cc-price">From ₹ 3,500</div>
+        <div class="card-desc">Premium branded corporate hampers with custom messaging. Minimum 10 units.</div>
+        <button class="card-qv" onclick="addToEnquiry('Business Hamper')">Add to Enquiry</button>
+      </div>
+    </div>
+    <!-- 9 -->
+    <div class="choco-card reveal delay-2" data-cat="truffle">
+      <img src="https://images.unsplash.com/photo-1569542763096-1530f0b3a40a?w=800&auto=format&fit=crop&q=80" alt="Bonbons">
+      <div class="card-gradient"></div>
+      <div class="card-body">
+        <div class="card-label">Artisan</div><div class="card-name">Bonbon Collection</div>
+        <div class="cc-price">From ₹ 750</div>
+        <div class="card-desc">Glossy hand-painted bonbons with passionfruit, salted caramel, and raspberry centres.</div>
+        <button class="card-qv" onclick="addToEnquiry('Bonbon Collection')">Add to Enquiry</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ENQUIRY TRAY -->
+<div id="enquiry-tray" style="display:none;position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);z-index:5000;background:var(--bg-elevated);border:1px solid var(--gold);padding:1.25rem 2rem;display:none;align-items:center;gap:1.5rem;max-width:500px;width:90%">
+  <div>
+    <div style="font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)">Enquiry Basket</div>
+    <div id="enquiry-items" style="font-size:.85rem;color:var(--text-secondary);margin-top:.25rem"></div>
+  </div>
+  <a href="contacts.html" class="btn-primary" style="white-space:nowrap;flex-shrink:0">Enquire Now</a>
+</div>
+
+<!-- FOOTER (condensed) -->
+<footer>
+  <div class="footer-grid">
+    <div><div class="footer-brand-name">Choco<span>Hunt</span></div><div class="footer-tagline">Crafted for True Chocolate Lovers</div><form class="footer-newsletter newsletter-form"><input type="email" placeholder="Newsletter" required><button type="submit">Subscribe</button></form></div>
+    <div><div class="footer-col-title">Navigate</div><ul class="footer-links"><li><a href="home.html">Home</a></li><li><a href="collection.html">Collections</a></li><li><a href="about.html">About</a></li><li><a href="contacts.html">Contact</a></li></ul></div>
+    <div><div class="footer-col-title">Collections</div><ul class="footer-links"><li><a href="#">Dark Bars</a></li><li><a href="#">Truffles</a></li><li><a href="#">Gift Boxes</a></li><li><a href="#">Hampers</a></li></ul></div>
+    <div><div class="footer-col-title">Legal</div><ul class="footer-links"><li><a href="#" onclick="CH.openModal('privacy');return false">Privacy Policy</a></li><li><a href="#" onclick="CH.openModal('terms');return false">Terms</a></li><li><a href="#" onclick="CH.openModal('shipping');return false">Shipping</a></li><li><a href="#" onclick="CH.openModal('refund');return false">Refunds</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><div class="footer-copy">© 2024 ChocoHunt.</div><div class="footer-credits">Designed by LeadKnight</div><button class="back-to-top">↑</button></div>
+</footer>
+
+<!-- AUTH MODAL -->
+<div class="auth-modal-overlay" id="auth-modal-overlay">
+  <div class="auth-modal"><button class="auth-modal-close" onclick="CH.closeAuthModal()">✕</button><div class="auth-logo">Choco<span>Hunt</span></div><div class="auth-subtitle">Premium Chocolate Club</div><div class="auth-tabs"><button class="auth-tab active" data-tab="login">Login</button><button class="auth-tab" data-tab="register">Sign Up</button></div><form class="auth-form active" id="form-login"><div class="auth-error" id="login-error"></div><div class="auth-field"><label>Email</label><input type="email" id="login-email" placeholder="hello@example.com" required></div><div class="auth-field"><label>Password</label><input type="password" id="login-password" placeholder="••••••••" required></div><button type="submit" class="auth-submit">Login</button></form><form class="auth-form" id="form-register"><div class="auth-error" id="reg-error"></div><div class="auth-success" id="reg-success"></div><div class="auth-field"><label>Full Name</label><input type="text" id="reg-name" placeholder="Your name" required></div><div class="auth-field"><label>Email</label><input type="email" id="reg-email" placeholder="hello@example.com" required></div><div class="auth-field"><label>Password</label><input type="password" id="reg-password" placeholder="Min 8 chars" required minlength="8"></div><button type="submit" class="auth-submit">Create Account</button></form></div>
+</div>
+
+<!-- LEGAL MODALS (condensed) -->
+<div class="page-modal" id="modal-privacy" data-modal="privacy"><button class="modal-close-btn" onclick="CH.closeModal('privacy')">✕</button><div class="modal-inner"><div class="modal-title">Privacy Policy</div><div class="modal-sub">Jan 2024</div><div class="modal-body"><h3>Data Collection</h3><p>We collect name, email, phone, address for order processing.</p><h3>Usage</h3><p>Used for orders, support, and marketing with consent.</p><h3>Contact</h3><p>privacy@chocohunt.in</p></div></div></div>
+<div class="page-modal" id="modal-terms" data-modal="terms"><button class="modal-close-btn" onclick="CH.closeModal('terms')">✕</button><div class="modal-inner"><div class="modal-title">Terms &amp; Conditions</div><div class="modal-sub">Jan 2024</div><div class="modal-body"><h3>Usage</h3><p>By using this site, you accept our terms.</p><h3>Orders</h3><p>Subject to availability. Payment required before processing.</p><h3>Governing Law</h3><p>Maharashtra, India. Disputes in Pune courts.</p></div></div></div>
+<div class="page-modal" id="modal-shipping" data-modal="shipping"><button class="modal-close-btn" onclick="CH.closeModal('shipping')">✕</button><div class="modal-inner"><div class="modal-title">Shipping Policy</div><div class="modal-sub">Jan 2024</div><div class="modal-body"><h3>Timeline</h3><ul><li>Pune: Same/next day</li><li>Maharashtra: 2-3 days</li><li>Pan India: 3-5 days</li></ul><h3>Charges</h3><p>Free above ₹1,500. ₹99 standard below.</p></div></div></div>
+<div class="page-modal" id="modal-refund" data-modal="refund"><button class="modal-close-btn" onclick="CH.closeModal('refund')">✕</button><div class="modal-inner"><div class="modal-title">Refund Policy</div><div class="modal-sub">Jan 2024</div><div class="modal-body"><h3>Eligibility</h3><p>Damaged or incorrect items only. Claim within 24hrs of delivery.</p><h3>Process</h3><p>Email hello@chocohunt.in. Refunds in 5-7 days.</p></div></div></div>
+
+<script src="assets/js/main.js"></script>
+<script>
+// FILTER
+const filterBtns = document.querySelectorAll('.filter-btn');
+const cards = document.querySelectorAll('#col-grid .choco-card');
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filterBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.filter;
+    cards.forEach(c => {
+      c.style.display = (f === 'all' || c.dataset.cat === f) ? 'block' : 'none';
+    });
+  });
+});
+// ENQUIRY TRAY
+const enquiry = [];
+function addToEnquiry(name) {
+  if (!enquiry.includes(name)) enquiry.push(name);
+  document.getElementById('enquiry-items').textContent = enquiry.join(' · ');
+  document.getElementById('enquiry-tray').style.display = 'flex';
+  CH.showToast(`Added: ${name}`);
+}
+</script>
+</body>
+</html>

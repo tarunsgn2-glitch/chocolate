@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reviews — ChocoHunt</title>
+<meta name="description" content="Real reviews from ChocoHunt customers — what India's chocolate lovers say about our handcrafted premium chocolates.">
+<link rel="stylesheet" href="assets/css/style.css">
+<script>(function(){const t=localStorage.getItem('ch-theme')||'dark';document.documentElement.setAttribute('data-theme',t);})();</script>
+<style>
+/* ── REVIEWS-SPECIFIC ── */
+.rating-summary{display:grid;grid-template-columns:auto 1fr;gap:4rem;max-width:900px;margin:0 auto 5rem;align-items:center;padding:3rem;border:1px solid var(--border);background:var(--glass)}
+.rating-big{text-align:center}
+.rating-score{font-family:var(--font-serif);font-size:6rem;font-weight:300;color:var(--gold);line-height:1}
+.rating-stars{font-size:1.5rem;color:var(--gold);letter-spacing:4px;margin:.5rem 0}
+.rating-count{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text-muted)}
+.rating-bars{flex:1}
+.bar-row{display:flex;align-items:center;gap:1rem;margin-bottom:.75rem}
+.bar-label{font-size:.72rem;letter-spacing:.1em;color:var(--text-muted);width:40px;text-align:right;flex-shrink:0}
+.bar-track{flex:1;height:4px;background:var(--border);position:relative;overflow:hidden}
+.bar-fill{height:100%;background:var(--gold);width:0;transition:width 1.2s ease}
+.bar-pct{font-size:.7rem;color:var(--text-muted);width:36px;flex-shrink:0}
+
+.reviews-filter{display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center;margin-bottom:3rem}
+.rev-filter-btn{font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;padding:.5rem 1.25rem;border:1px solid var(--border);background:transparent;color:var(--text-muted);cursor:none;transition:all .3s}
+.rev-filter-btn:hover,.rev-filter-btn.active{background:var(--gold);color:#0d0704;border-color:var(--gold)}
+
+.reviews-masonry{columns:3;column-gap:1.5rem;max-width:1200px;margin:0 auto}
+.rev-card{break-inside:avoid;margin-bottom:1.5rem;padding:2rem;border:1px solid var(--border);background:var(--glass);transition:border-color .3s,background .3s;cursor:none}
+.rev-card:hover{border-color:var(--border-strong);background:var(--card-hover)}
+.rev-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem}
+.rev-author-row{display:flex;align-items:center;gap:.85rem}
+.rev-avatar{width:42px;height:42px;border-radius:50%;border:1px solid var(--border-strong);display:flex;align-items:center;justify-content:center;font-family:var(--font-serif);font-size:.95rem;color:var(--gold);background:var(--gold-dim);flex-shrink:0}
+.rev-name{font-size:.9rem;font-weight:500;color:var(--text-primary)}
+.rev-meta{font-size:.66rem;color:var(--text-muted);letter-spacing:.06em;margin-top:.15rem}
+.rev-stars{color:var(--gold);font-size:.85rem;letter-spacing:2px}
+.rev-badge{font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;padding:.25rem .65rem;border:1px solid var(--gold-border);color:var(--gold)}
+.rev-text{font-family:var(--font-serif);font-size:1.05rem;font-style:italic;font-weight:300;line-height:1.75;color:var(--text-primary)}
+.rev-product{font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted);margin-top:.85rem;border-top:1px solid var(--border);padding-top:.75rem}
+.rev-product span{color:var(--gold)}
+
+.featured-review{max-width:800px;margin:0 auto 5rem;padding:4rem;border:1px solid var(--gold-border);background:var(--glass);text-align:center;position:relative}
+.featured-review::before,.featured-review::after{content:'';position:absolute;width:32px;height:32px;border:1px solid var(--gold)}
+.featured-review::before{top:-1px;left:-1px;border-right:none;border-bottom:none}
+.featured-review::after{bottom:-1px;right:-1px;border-left:none;border-top:none}
+.featured-stars{color:var(--gold);font-size:1.25rem;letter-spacing:4px;margin-bottom:1.5rem}
+.featured-text{font-family:var(--font-serif);font-size:clamp(1.3rem,2.5vw,2rem);font-style:italic;font-weight:300;line-height:1.5;color:var(--text-primary);margin-bottom:2rem}
+.featured-author{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+
+.write-review-section{max-width:700px;margin:0 auto}
+.review-form .form-group{margin-bottom:1.25rem}
+.review-form label{display:block;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem}
+.review-form input,.review-form textarea,.review-form select{width:100%;padding:1rem 1.15rem;background:var(--glass);border:1px solid var(--border);color:var(--text-primary);font-family:var(--font-sans);font-size:.88rem;font-weight:300;outline:none;transition:border-color .3s;-webkit-appearance:none;resize:none}
+.review-form input:focus,.review-form textarea:focus{border-color:var(--gold)}
+.review-form input::placeholder,.review-form textarea::placeholder{color:var(--text-dim)}
+
+.star-picker{display:flex;gap:.5rem;margin-bottom:1.5rem}
+.star-pick{font-size:1.8rem;color:var(--border-strong);cursor:none;transition:color .2s}
+.star-pick.selected,.star-pick:hover{color:var(--gold)}
+
+.social-proof-bar{display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;padding:3rem;background:var(--bg-elevated);border-top:1px solid var(--border);border-bottom:1px solid var(--border);max-width:100%;margin:0}
+.sp-item{text-align:center}
+.sp-num{font-family:var(--font-serif);font-size:2.5rem;font-weight:300;color:var(--gold);line-height:1}
+.sp-label{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text-muted);margin-top:.4rem}
+
+@media(max-width:900px){.reviews-masonry{columns:2}.rating-summary{grid-template-columns:1fr;gap:2rem;text-align:center}.bar-row{justify-content:center}}
+@media(max-width:600px){.reviews-masonry{columns:1}}
+</style>
+</head>
+<body>
+<div id="cursor"></div><div id="cursor-ring"></div><div id="scroll-progress"></div>
+<div id="page-loader"><div class="loader-logo-text">Choco<span>Hunt</span></div><div class="loader-bar-track"><div class="loader-bar-fill"></div></div><div class="loader-tag">What People Say</div></div>
+
+<div class="mobile-nav" id="mobile-nav">
+  <a href="home.html">Home</a><a href="collection.html">Collections</a><a href="about.html">About</a><a href="partners.html">Partners</a><a href="reviews.html">Reviews</a><a href="contacts.html">Contact</a>
+  <div class="mobile-nav-actions"><button class="theme-toggle">☀️</button><button class="btn-login" data-auth-open="login">Login</button></div>
+</div>
+
+<nav id="navbar">
+  <a href="home.html" class="nav-logo">Choco<span>Hunt</span></a>
+  <ul class="nav-links">
+    <li><a href="home.html">Home</a></li><li><a href="collection.html">Collections</a></li><li><a href="about.html">About</a></li><li><a href="partners.html">Partners</a></li><li><a href="reviews.html" class="active">Reviews</a></li><li><a href="contacts.html">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="theme-toggle">☀️</button>
+    <div class="auth-logged-out" style="display:flex;gap:.75rem"><button class="btn-login" data-auth-open="login">Login</button><button class="btn-nav-cta" data-auth-open="register">Sign Up</button></div>
+    <div class="auth-logged-in" style="display:none;gap:.75rem;align-items:center"><div class="nav-user"><div class="nav-user-dot"></div><span class="nav-user-name">User</span></div><button class="btn-logout" data-logout>Logout</button></div>
+  </div>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="hero-bg-img">
+    <img src="https://images.unsplash.com/photo-1548907040-4baa42d10919?w=1800&auto=format&fit=crop&q=80" alt="Chocolate truffles">
+    <div class="hero-bg-grad"></div>
+  </div>
+  <div class="page-hero-content">
+    <span class="s-eyebrow" style="display:block;margin-bottom:1rem">Customer Stories</span>
+    <h1 class="page-hero-title">Voices of <em>Delight</em></h1>
+    <p class="page-hero-sub">Real people. Real moments. Real chocolate love.</p>
+  </div>
+</div>
+
+<!-- SOCIAL PROOF BAR -->
+<div class="social-proof-bar">
+  <div class="sp-item"><div class="sp-num">4.9</div><div class="sp-label">Average Rating</div></div>
+  <div class="sp-item"><div class="sp-num">2,400+</div><div class="sp-label">Reviews</div></div>
+  <div class="sp-item"><div class="sp-num">98%</div><div class="sp-label">Would Recommend</div></div>
+  <div class="sp-item"><div class="sp-num">12K+</div><div class="sp-label">Happy Customers</div></div>
+</div>
+
+<!-- MARQUEE -->
+<div class="marquee-band" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-item">"Best chocolate in India" <span class="marquee-dot">◆</span></span><span class="marquee-item">"Pure luxury in every bite" <span class="marquee-dot">◆</span></span><span class="marquee-item">"Gift of the year" <span class="marquee-dot">◆</span></span><span class="marquee-item">"Packaging is breathtaking" <span class="marquee-dot">◆</span></span><span class="marquee-item">"Sophisticated and complex" <span class="marquee-dot">◆</span></span><span class="marquee-item">"Finally — real artisan chocolate" <span class="marquee-dot">◆</span></span><span class="marquee-item">"Best chocolate in India" <span class="marquee-dot">◆</span></span><span class="marquee-item">"Pure luxury in every bite" <span class="marquee-dot">◆</span></span><span class="marquee-item">"Gift of the year" <span class="marquee-dot">◆</span></span><span class="marquee-item">"Packaging is breathtaking" <span class="marquee-dot">◆</span></span><span class="marquee-item">"Sophisticated and complex" <span class="marquee-dot">◆</span></span><span class="marquee-item">"Finally — real artisan chocolate" <span class="marquee-dot">◆</span></span>
+  </div>
+</div>
+
+<!-- RATING SUMMARY -->
+<section class="section-pad" style="background:linear-gradient(180deg,var(--bg-primary),var(--bg-secondary))">
+  <div class="section-head reveal">
+    <span class="s-eyebrow">Overall Rating</span>
+    <h2 class="s-title">What <em>Customers</em> Say</h2>
+    <div class="gold-divider"><div class="gd-line"></div><div class="gd-diamond"></div><div class="gd-line"></div></div>
+  </div>
+  <div class="rating-summary reveal">
+    <div class="rating-big">
+      <div class="rating-score">4.9</div>
+      <div class="rating-stars">★★★★★</div>
+      <div class="rating-count">Based on 2,400+ reviews</div>
+    </div>
+    <div class="rating-bars">
+      <div class="bar-row"><span class="bar-label">5 ★</span><div class="bar-track"><div class="bar-fill" data-width="88%"></div></div><span class="bar-pct">88%</span></div>
+      <div class="bar-row"><span class="bar-label">4 ★</span><div class="bar-track"><div class="bar-fill" data-width="9%"></div></div><span class="bar-pct">9%</span></div>
+      <div class="bar-row"><span class="bar-label">3 ★</span><div class="bar-track"><div class="bar-fill" data-width="2%"></div></div><span class="bar-pct">2%</span></div>
+      <div class="bar-row"><span class="bar-label">2 ★</span><div class="bar-track"><div class="bar-fill" data-width="1%"></div></div><span class="bar-pct">1%</span></div>
+      <div class="bar-row"><span class="bar-label">1 ★</span><div class="bar-track"><div class="bar-fill" data-width="0%"></div></div><span class="bar-pct">0%</span></div>
+    </div>
+  </div>
+
+  <!-- FEATURED REVIEW -->
+  <div class="featured-review reveal">
+    <div class="featured-stars">★★★★★</div>
+    <div class="featured-text">"I've tasted chocolates from Paris, Brussels, and Zurich — and ChocoHunt from Pune stands right alongside them. This isn't Indian chocolate. This is world-class chocolate that happens to be made in India."</div>
+    <div class="featured-author">Rohit Sharma · Food Critic · Mumbai · Verified Purchase</div>
+  </div>
+
+  <!-- FILTER -->
+  <div class="reviews-filter reveal">
+    <button class="rev-filter-btn active" data-filter="all">All Reviews</button>
+    <button class="rev-filter-btn" data-filter="dark">Dark Bars</button>
+    <button class="rev-filter-btn" data-filter="truffle">Truffles</button>
+    <button class="rev-filter-btn" data-filter="gift">Gift Boxes</button>
+    <button class="rev-filter-btn" data-filter="festive">Hampers</button>
+    <button class="rev-filter-btn" data-filter="limited">Limited Ed.</button>
+  </div>
+
+  <!-- MASONRY REVIEWS -->
+  <div class="reviews-masonry reveal" id="reviews-grid">
+
+    <div class="rev-card" data-cat="truffle">
+      <div class="rev-top"><div class="rev-author-row"><div class="rev-avatar">PR</div><div><div class="rev-name">Priya Rathod</div><div class="rev-meta">Mumbai · Oct 2024</div></div></div><div><div class="rev-stars">★★★★★</div><div class="rev-badge">Verified</div></div></div>
+      <div class="rev-text">"The dark chocolate truffle collection is unlike anything I've had in India. Pure luxury in every bite — the ganache is perfectly balanced, not too sweet, not too bitter. I now order it every single month."</div>
+      <div class="rev-product">Product: <span>Truffle Atelier Collection</span></div>
+    </div>
+
+    <div class="rev-card" data-cat="festive">
+      <div class="rev-top"><div class="rev-author-row"><div class="rev-avatar">AK</div><div><div class="rev-name">Arvind Kulkarni</div><div class="rev-meta">Pune · Nov 2024</div></div></div><div><div class="rev-stars">★★★★★</div><div class="rev-badge">Corporate</div></div></div>
+      <div class="rev-text">"Ordered a Diwali hamper for our entire team of 80 people. The presentation was breathtaking — every single person came to thank me personally. Will be our official gifting partner going forward."</div>
+      <div class="rev-product">Product: <span>Festival Hamper — Diwali Edition</span></div>
+    </div>
+
+    <div class="rev-card" data-cat="gift">
+      <div class="rev-top"><div class="rev-author-row"><div class="rev-avatar">SN</div><div><div class="rev-name">Sneha Nair</div><div class="rev-meta">Bangalore · Sep 2024</div></div></div><div><div class="rev-stars">★★★★★</div><div class="rev-badge">Verified</div></div></div>
+      <div class="rev-text">"ChocoHunt's Maison Gift Box was the most beautiful thing I've ever gifted my mother. She couldn't believe how exquisite the packaging was. She said it felt like receiving a gift from a French chocolatier."</div>
+      <div class="rev-product">Product: <span>Maison Gift Box — Classic</span></div>
+    </div>
+
+    <div class="rev-card" data-cat="dark">
+      <div class="rev-top"><div class="rev-author-row"><div class="rev-avatar">VM</div><div><div class="rev-name">Varun Mehta</div><div class="rev-meta">Delhi · Aug 2024</div></div></div><div><div class="rev-stars">★★★★★</div><div class="rev-badge">Verified</div></div></div>
+      <div class="rev-text">"The 72% Noir dark chocolate bars are sophisticated, complex, and absolutely addictive. I can taste the single-origin terroir — fruity on entry, earthy on finish. A brand that finally takes chocolate as seriously as wine."</div>
+      <div class="rev-product">Product: <span>Noir Collection — 72% Dark</span></div>
+    </div>
+
+    <div class="rev-card" data-cat="gift">
+      <div class="rev-top"><div class="rev-author-row"><div class="rev-avatar">RD</div><div><div class="rev-name">Rohan D'Souza</div><div class="rev-meta">Goa · Jul 2024</div></div></div><div><div class="rev-stars">★★★★★</div><div class="rev-badge">Hotel Partner</div></div></div>
+      <div class="rev-text">"We use ChocoHunt for all our hotel welcome amenities at Caravela Beach Resort. Our guests are consistently impressed and frequently ask where they can buy more. It elevates everything around it."</div>
+      <div class="rev-product">Product: <span>Hospitality Welcome Collection</span></div>
+    </div>
+
+    <div class="rev-card" data-cat="limited">
+      <div class="rev-top"><div class="rev-author-row"><div class="rev-avatar">MS</div><div><div class="rev-name">Meera Sharma</div><div class="rev-meta">Mumbai · Dec 2024</div></div></div><div><div class="rev-stars">★★★★★</div><div class="rev-badge">Verified</div></div></div>
+      <div class="rev-text">"Managed to grab the Christmas Limited Edition before it sold out — worth every rupee. The packaging was collector-worthy. The Madagascar 85% inside was genuinely one of the best things I've ever tasted."</div>
+      <div class="rev-product">Product: <span>Limited Edition — Christmas 2024</span></div>
+    </div>
+
+    <div class="rev-card" data-cat="truffle">
+      <div class="rev-top"><div class="rev-author-row"><div class="rev-avatar">KP</div><div><div class="rev-name">Kiran Patil</div><div class="rev-meta">Pune · Oct 2024</div></div></div><div><div class="rev-stars">★★★★★</div><div class="rev-badge">Verified</div></div></div>
+      <div class="rev-text">"The salted caramel bonbons are dangerous. I genuinely cannot stop eating them. The contrast between the bitter dark shell and the sweet buttery interior is perfectly calibrated. Absolute perfection."</div>
+      <div class="rev-product">Product: <span>Bonbon Collection — Salted Caramel</span></div>
+    </div>
+
+    <div class="rev-card" data-cat="festive">
+      <div class="rev-top"><div class="rev-author-row"><div class="rev-avatar">TG</div><div><div class="rev-name">Tanvi Gupta</div><div class="rev-meta">Delhi · Nov 2024</div></div></div><div><div class="rev-stars">★★★★★</div><div class="rev-badge">Corporate</div></div></div>
+      <div class="rev-text">"We gifted ChocoHunt hampers to all our top clients this Diwali. The feedback was overwhelming — multiple clients reached out specifically to ask about the brand. Best corporate gifting decision we've made."</div>
+      <div class="rev-product">Product: <span>Corporate Diwali Hamper</span></div>
+    </div>
+
+    <div class="rev-card" data-cat="dark">
+      <div class="rev-top"><div class="rev-author-row"><div class="rev-avatar">AJ</div><div><div class="rev-name">Ananya Joshi</div><div class="rev-meta">Pune · Sep 2024</div></div></div><div><div class="rev-stars">★★★★★</div><div class="rev-badge">Verified</div></div></div>
+      <div class="rev-text">"I am a self-confessed dark chocolate snob and ChocoHunt's Grand Cru 85% bar finally satisfies me the way good coffee does — complex, layered, and deeply satisfying. I've converted four friends already."</div>
+      <div class="rev-product">Product: <span>Grand Cru Bars — 85% Dark</span></div>
+    </div>
+
+    <div class="rev-card" data-cat="gift">
+      <div class="rev-top"><div class="rev-author-row"><div class="rev-avatar">NS</div><div><div class="rev-name">Nikhil Shah</div><div class="rev-meta">Ahmedabad · Aug 2024</div></div></div><div><div class="rev-stars">★★★★★</div><div class="rev-badge">Verified</div></div></div>
+      <div class="rev-text">"Ordered as a wedding anniversary gift for my wife. She literally cried when she opened it — the presentation was that beautiful. The chocolates inside were equally magical. Thank you ChocoHunt."</div>
+      <div class="rev-product">Product: <span>Maison Gift Box — Signature</span></div>
+    </div>
+
+    <div class="rev-card" data-cat="truffle">
+      <div class="rev-top"><div class="rev-author-row"><div class="rev-avatar">LM</div><div><div class="rev-name">Lakshmi Menon</div><div class="rev-meta">Chennai · Jul 2024</div></div></div><div><div class="rev-stars">★★★★★</div><div class="rev-badge">Verified</div></div></div>
+      <div class="rev-text">"The passionfruit truffle is a revelation. I didn't know tropical fruit could pair so elegantly with 70% dark chocolate. It's the kind of thing you eat slowly and with your eyes closed."</div>
+      <div class="rev-product">Product: <span>Truffle Atelier — Passionfruit</span></div>
+    </div>
+
+    <div class="rev-card" data-cat="limited">
+      <div class="rev-top"><div class="rev-author-row"><div class="rev-avatar">RB</div><div><div class="rev-name">Rahul Bose</div><div class="rev-meta">Mumbai · Jan 2025</div></div></div><div><div class="rev-stars">★★★★★</div><div class="rev-badge">Verified</div></div></div>
+      <div class="rev-text">"Set a reminder for the New Year limited edition launch and it was worth the alarm. Sold out in hours for a reason — this is what Indian artisan chocolate can and should be. Proud to support this brand."</div>
+      <div class="rev-product">Product: <span>Limited Edition — New Year 2025</span></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- VISUAL STRIP -->
+<div class="vis-strip reveal">
+  <img src="https://images.unsplash.com/photo-1569542763096-1530f0b3a40a?w=1800&auto=format&fit=crop&q=80" alt="Chocolate bonbons luxury">
+  <div class="vs-overlay-center">
+    <div class="vs-text reveal delay-1" style="text-align:center">
+      <div class="vs-label">Your Turn</div>
+      <h2 class="vs-heading">Share Your <em>Experience</em></h2>
+      <p class="vs-body" style="max-width:450px;margin:0 auto">Had a ChocoHunt moment? We'd love to hear about it. Every review helps us craft better chocolate for everyone.</p>
+    </div>
+  </div>
+</div>
+
+<!-- WRITE A REVIEW -->
+<section class="section-pad" style="background:var(--bg-secondary)">
+  <div class="write-review-section reveal">
+    <div class="section-head" style="margin-bottom:3rem">
+      <span class="s-eyebrow">Share Your Story</span>
+      <h2 class="s-title">Write a <em>Review</em></h2>
+    </div>
+    <div id="review-login-notice" style="display:none;padding:1.5rem;border:1px solid var(--gold-border);margin-bottom:2rem;text-align:center">
+      <p style="color:var(--text-muted);font-size:.9rem;margin-bottom:1rem">Please login to write a review.</p>
+      <button class="btn-primary" data-auth-open="login">Login to Review</button>
+    </div>
+    <form class="review-form" id="review-form">
+      <div id="review-msg" class="form-message"></div>
+      <div class="form-group"><label>Your Name</label><input type="text" name="name" placeholder="Full name" required></div>
+      <div class="form-group"><label>Email Address</label><input type="email" name="email" placeholder="hello@example.com" required></div>
+      <div class="form-group">
+        <label>Product Purchased</label>
+        <select name="product" required>
+          <option value="" disabled selected>Which ChocoHunt product?</option>
+          <option>Noir Collection — Dark Bars</option>
+          <option>Grand Cru Bars — 85%</option>
+          <option>Truffle Atelier</option>
+          <option>Bonbon Collection</option>
+          <option>Maison Gift Box</option>
+          <option>Festival Hampers</option>
+          <option>Velvet Series</option>
+          <option>Limited Edition</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Your Rating</label>
+        <div class="star-picker" id="star-picker">
+          <span class="star-pick" data-val="1">★</span>
+          <span class="star-pick" data-val="2">★</span>
+          <span class="star-pick" data-val="3">★</span>
+          <span class="star-pick" data-val="4">★</span>
+          <span class="star-pick" data-val="5">★</span>
+        </div>
+        <input type="hidden" name="rating" id="rating-val" value="5">
+      </div>
+      <div class="form-group"><label>Your Review</label><textarea name="review" rows="5" placeholder="Tell us about your experience with ChocoHunt..." required></textarea></div>
+      <button type="submit" class="btn-primary form-submit-btn" style="width:100%">Submit Review</button>
+    </form>
+  </div>
+</section>
+
+<!-- PARALLAX QUOTE -->
+<div class="pq-section">
+  <div class="pq-bg"><img src="https://images.unsplash.com/photo-1610450949065-1f2841536c88?w=1800&auto=format&fit=crop&q=80" alt="Chocolate background"></div>
+  <div class="pq-overlay"></div>
+  <div class="pq-content reveal">
+    <div class="pq-quote">"Every review we receive makes us <strong>better.</strong> Every kind word keeps our chocolatiers inspired. Thank you for being part of our story."</div>
+    <div class="pq-attr">— ChocoHunt Team, Pune</div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div><div class="footer-brand-name">Choco<span>Hunt</span></div><div class="footer-tagline">Crafted for True Chocolate Lovers</div><form class="footer-newsletter newsletter-form"><input type="email" placeholder="Newsletter" required><button type="submit">Subscribe</button></form></div>
+    <div><div class="footer-col-title">Navigate</div><ul class="footer-links"><li><a href="home.html">Home</a></li><li><a href="collection.html">Collections</a></li><li><a href="about.html">About</a></li><li><a href="contacts.html">Contact</a></li></ul></div>
+    <div><div class="footer-col-title">Collections</div><ul class="footer-links"><li><a href="collection.html">Dark Bars</a></li><li><a href="collection.html">Truffles</a></li><li><a href="collection.html">Gift Boxes</a></li><li><a href="collection.html">Hampers</a></li></ul></div>
+    <div><div class="footer-col-title">Legal</div><ul class="footer-links"><li><a href="#" onclick="CH.openModal('privacy');return false">Privacy Policy</a></li><li><a href="#" onclick="CH.openModal('terms');return false">Terms</a></li><li><a href="#" onclick="CH.openModal('shipping');return false">Shipping</a></li><li><a href="#" onclick="CH.openModal('refund');return false">Refunds</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><div class="footer-copy">© 2024 ChocoHunt. All rights reserved.</div><div class="footer-credits">Designed &amp; Managed by LeadKnight</div><button class="back-to-top">↑</button></div>
+</footer>
+
+<!-- AUTH MODAL -->
+<div class="auth-modal-overlay" id="auth-modal-overlay">
+  <div class="auth-modal"><button class="auth-modal-close" onclick="CH.closeAuthModal()">✕</button><div class="auth-logo">Choco<span>Hunt</span></div><div class="auth-subtitle">Premium Chocolate Club</div><div class="auth-tabs"><button class="auth-tab active" data-tab="login">Login</button><button class="auth-tab" data-tab="register">Sign Up</button></div><form class="auth-form active" id="form-login"><div class="auth-error" id="login-error"></div><div class="auth-field"><label>Email</label><input type="email" id="login-email" placeholder="hello@example.com" required></div><div class="auth-field"><label>Password</label><input type="password" id="login-password" placeholder="••••••••" required></div><button type="submit" class="auth-submit">Login</button></form><form class="auth-form" id="form-register"><div class="auth-error" id="reg-error"></div><div class="auth-success" id="reg-success"></div><div class="auth-field"><label>Name</label><input type="text" id="reg-name" placeholder="Your name" required></div><div class="auth-field"><label>Email</label><input type="email" id="reg-email" placeholder="hello@example.com" required></div><div class="auth-field"><label>Password</label><input type="password" id="reg-password" placeholder="Min 8 chars" required minlength="8"></div><button type="submit" class="auth-submit">Create Account</button></form></div>
+</div>
+
+<!-- LEGAL MODALS -->
+<div class="page-modal" id="modal-privacy" data-modal="privacy"><button class="modal-close-btn" onclick="CH.closeModal('privacy')">✕</button><div class="modal-inner"><div class="modal-title">Privacy Policy</div><div class="modal-sub">Jan 2024</div><div class="modal-body"><h3>Data Collection</h3><p>Name, email collected for reviews and orders.</p><h3>Contact</h3><p>privacy@chocohunt.in</p></div></div></div>
+<div class="page-modal" id="modal-terms" data-modal="terms"><button class="modal-close-btn" onclick="CH.closeModal('terms')">✕</button><div class="modal-inner"><div class="modal-title">Terms &amp; Conditions</div><div class="modal-sub">Jan 2024</div><div class="modal-body"><h3>Usage</h3><p>By using this site you accept our terms. Governing law: Maharashtra, India.</p></div></div></div>
+<div class="page-modal" id="modal-shipping" data-modal="shipping"><button class="modal-close-btn" onclick="CH.closeModal('shipping')">✕</button><div class="modal-inner"><div class="modal-title">Shipping Policy</div><div class="modal-sub">Jan 2024</div><div class="modal-body"><h3>Timelines</h3><ul><li>Pune: Same/Next day</li><li>Pan India: 3-5 days</li></ul></div></div></div>
+<div class="page-modal" id="modal-refund" data-modal="refund"><button class="modal-close-btn" onclick="CH.closeModal('refund')">✕</button><div class="modal-inner"><div class="modal-title">Refund Policy</div><div class="modal-sub">Jan 2024</div><div class="modal-body"><h3>Eligibility</h3><p>Damaged items only. Claim within 24hrs of delivery.</p></div></div></div>
+
+<script src="assets/js/main.js"></script>
+<script>
+// ANIMATE RATING BARS
+const barFills = document.querySelectorAll('.bar-fill');
+const barObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting) {
+      e.target.style.width = e.target.dataset.width;
+      barObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.5 });
+barFills.forEach(b => barObs.observe(b));
+
+// FILTER REVIEWS
+document.querySelectorAll('.rev-filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.rev-filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.filter;
+    document.querySelectorAll('.rev-card').forEach(c => {
+      c.style.display = (f === 'all' || c.dataset.cat === f) ? 'block' : 'none';
+    });
+  });
+});
+
+// STAR PICKER
+let selectedRating = 5;
+const stars = document.querySelectorAll('.star-pick');
+stars.forEach(star => {
+  star.addEventListener('mouseenter', () => {
+    const val = +star.dataset.val;
+    stars.forEach(s => s.classList.toggle('selected', +s.dataset.val <= val));
+  });
+  star.addEventListener('mouseleave', () => {
+    stars.forEach(s => s.classList.toggle('selected', +s.dataset.val <= selectedRating));
+  });
+  star.addEventListener('click', () => {
+    selectedRating = +star.dataset.val;
+    document.getElementById('rating-val').value = selectedRating;
+    stars.forEach(s => s.classList.toggle('selected', +s.dataset.val <= selectedRating));
+  });
+});
+// Init all stars selected
+stars.forEach(s => s.classList.add('selected'));
+
+// REVIEW FORM SUBMIT
+document.getElementById('review-form').addEventListener('submit', async e => {
+  e.preventDefault();
+  const btn = e.target.querySelector('.form-submit-btn');
+  const msgEl = document.getElementById('review-msg');
+  const data = Object.fromEntries(new FormData(e.target));
+  btn.disabled = true; btn.textContent = 'Submitting...';
+  try {
+    await fetch('http://localhost:3001/api/reviews', {
+      method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(data)
+    });
+  } catch(_) {}
+  msgEl.className = 'form-message success';
+  msgEl.textContent = '✓ Thank you! Your review has been submitted and is pending approval.';
+  e.target.reset();
+  stars.forEach(s => s.classList.add('selected'));
+  selectedRating = 5;
+  btn.disabled = false; btn.textContent = 'Submit Review';
+  CH.showToast('Review submitted! Thank you 🍫');
+});
+</script>
+</body>
+</html>

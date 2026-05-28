@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us — ChocoHunt</title>
+<meta name="description" content="Get in touch with ChocoHunt — for orders, corporate gifting, retail partnerships, or just to say hello from Pune, India.">
+<link rel="stylesheet" href="assets/css/style.css">
+<script>(function(){const t=localStorage.getItem('ch-theme')||'dark';document.documentElement.setAttribute('data-theme',t);})();</script>
+<style>
+/* ── CONTACT-SPECIFIC ── */
+.contact-full-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:5rem;max-width:1200px;margin:4rem auto 0;align-items:start}
+.contact-info-block{}
+.contact-title-large{font-family:var(--font-serif);font-size:clamp(2.2rem,4vw,4rem);font-weight:300;line-height:1.15;color:var(--text-primary);margin-bottom:2rem}
+.contact-title-large em{font-style:italic;color:var(--gold-light)}
+.info-card{display:flex;gap:1.25rem;align-items:flex-start;padding:1.5rem;border:1px solid var(--border);margin-bottom:1rem;transition:border-color .3s,background .3s;cursor:none}
+.info-card:hover{border-color:var(--border-strong);background:var(--card-hover)}
+.info-icon{width:48px;height:48px;border:1px solid var(--border-strong);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.2rem;transition:background .3s}
+.info-card:hover .info-icon{background:var(--gold-dim)}
+.info-label{font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:.3rem}
+.info-value{font-size:.95rem;color:var(--text-secondary);font-weight:300;line-height:1.5}
+.info-sub{font-size:.75rem;color:var(--text-muted);margin-top:.25rem}
+
+.map-embed{margin-top:1.5rem;position:relative;height:260px;border:1px solid var(--border);overflow:hidden}
+.map-embed iframe{width:100%;height:100%;border:none;filter:grayscale(1) invert(1) contrast(0.85) brightness(0.85)}
+[data-theme="light"] .map-embed iframe{filter:grayscale(0.3) contrast(0.9)}
+.map-embed-overlay{position:absolute;inset:0;background:transparent;pointer-events:none}
+.map-label{position:absolute;top:1rem;left:1rem;background:var(--bg-primary);border:1px solid var(--gold-border);padding:.5rem 1rem;font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+
+.form-card{background:var(--glass);border:1px solid var(--border);padding:3rem}
+.form-card-title{font-family:var(--font-serif);font-size:1.8rem;font-weight:300;color:var(--text-primary);margin-bottom:.35rem}
+.form-card-sub{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:2.5rem}
+.form-label-el{display:block;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem}
+.fg-full input,.fg-full textarea,.fg-full select{width:100%;padding:1.05rem 1.15rem;background:var(--bg-primary);border:1px solid var(--border);color:var(--text-primary);font-family:var(--font-sans);font-size:.88rem;font-weight:300;outline:none;transition:border-color .3s;-webkit-appearance:none;resize:none}
+.fg-full input:focus,.fg-full textarea:focus{border-color:var(--gold)}
+.fg-full input::placeholder,.fg-full textarea::placeholder{color:var(--text-dim)}
+.form-2col{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.25rem}
+.fg-mb{margin-bottom:1.25rem}
+
+.quick-contact{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;max-width:900px;margin:5rem auto 0}
+.qc-card{padding:2.5rem;border:1px solid var(--border);text-align:center;transition:border-color .4s,background .4s;cursor:none}
+.qc-card:hover{border-color:var(--gold);background:var(--card-hover)}
+.qc-icon{font-size:2rem;margin-bottom:1rem}
+.qc-title{font-family:var(--font-serif);font-size:1.2rem;color:var(--text-primary);margin-bottom:.4rem}
+.qc-val{font-size:.88rem;font-weight:300;color:var(--text-secondary)}
+.qc-sub{font-size:.72rem;color:var(--text-muted);margin-top:.3rem}
+
+.social-section{max-width:1000px;margin:0 auto}
+.social-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1.25rem;margin-top:3rem}
+.soc-big-card{padding:2.5rem 1.5rem;border:1px solid var(--border);text-align:center;cursor:none;transition:all .4s;position:relative;overflow:hidden}
+.soc-big-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--gold-dim),transparent);transform:translateY(100%);transition:transform .4s}
+.soc-big-card:hover::before{transform:translateY(0)}
+.soc-big-card:hover{border-color:var(--gold);transform:translateY(-5px)}
+.soc-big-icon{font-size:2.2rem;margin-bottom:1rem;position:relative;z-index:1}
+.soc-big-name{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text-muted);transition:color .3s;position:relative;z-index:1}
+.soc-big-card:hover .soc-big-name{color:var(--gold)}
+.soc-big-handle{font-family:var(--font-serif);font-size:1rem;color:var(--text-primary);margin-top:.35rem;position:relative;z-index:1}
+.soc-big-count{font-size:.75rem;color:var(--gold);margin-top:.25rem;position:relative;z-index:1}
+
+.faq-list{max-width:800px;margin:4rem auto 0}
+.faq-item{border-bottom:1px solid var(--border);overflow:hidden}
+.faq-q{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 0;cursor:none;font-size:.95rem;font-weight:400;color:var(--text-primary);transition:color .3s}
+.faq-q:hover{color:var(--gold)}
+.faq-icon{font-size:1.2rem;color:var(--gold);transition:transform .35s;flex-shrink:0;margin-left:1rem}
+.faq-item.open .faq-icon{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease;font-size:.88rem;font-weight:300;color:var(--text-muted);line-height:1.8}
+.faq-item.open .faq-a{max-height:200px;padding-bottom:1.5rem}
+
+@media(max-width:1000px){.contact-full-grid{grid-template-columns:1fr;gap:3rem}.quick-contact{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.quick-contact{grid-template-columns:1fr}.social-grid{grid-template-columns:1fr 1fr}.form-2col{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div id="cursor"></div><div id="cursor-ring"></div><div id="scroll-progress"></div>
+<div id="page-loader"><div class="loader-logo-text">Choco<span>Hunt</span></div><div class="loader-bar-track"><div class="loader-bar-fill"></div></div><div class="loader-tag">Get In Touch</div></div>
+
+<div class="mobile-nav" id="mobile-nav">
+  <a href="home.html">Home</a><a href="collection.html">Collections</a><a href="about.html">About</a><a href="partners.html">Partners</a><a href="reviews.html">Reviews</a><a href="contacts.html">Contact</a>
+  <div class="mobile-nav-actions"><button class="theme-toggle">☀️</button><button class="btn-login" data-auth-open="login">Login</button></div>
+</div>
+
+<nav id="navbar">
+  <a href="home.html" class="nav-logo">Choco<span>Hunt</span></a>
+  <ul class="nav-links">
+    <li><a href="home.html">Home</a></li><li><a href="collection.html">Collections</a></li><li><a href="about.html">About</a></li><li><a href="partners.html">Partners</a></li><li><a href="reviews.html">Reviews</a></li><li><a href="contacts.html" class="active">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="theme-toggle">☀️</button>
+    <div class="auth-logged-out" style="display:flex;gap:.75rem"><button class="btn-login" data-auth-open="login">Login</button><button class="btn-nav-cta" data-auth-open="register">Sign Up</button></div>
+    <div class="auth-logged-in" style="display:none;gap:.75rem;align-items:center"><div class="nav-user"><div class="nav-user-dot"></div><span class="nav-user-name">User</span></div><button class="btn-logout" data-logout>Logout</button></div>
+  </div>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="hero-bg-img">
+    <img src="https://images.unsplash.com/photo-1511381939415-e44515f1d81d?w=1800&auto=format&fit=crop&q=80" alt="Cocoa and chocolate premium">
+    <div class="hero-bg-grad"></div>
+  </div>
+  <div class="page-hero-content">
+    <span class="s-eyebrow" style="display:block;margin-bottom:1rem">Reach Us</span>
+    <h1 class="page-hero-title">Let's <em>Connect</em></h1>
+    <p class="page-hero-sub">Orders, gifting, partnerships, or just to say hello — we're always here.</p>
+  </div>
+</div>
+
+<!-- MARQUEE -->
+<div class="marquee-band" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-item">Kothrud, Pune <span class="marquee-dot">◆</span></span><span class="marquee-item">hello@chocohunt.in <span class="marquee-dot">◆</span></span><span class="marquee-item">+91 98765 43210 <span class="marquee-dot">◆</span></span><span class="marquee-item">Mon–Sat 10am–7pm <span class="marquee-dot">◆</span></span><span class="marquee-item">24hr Response <span class="marquee-dot">◆</span></span><span class="marquee-item">Corporate Gifting Available <span class="marquee-dot">◆</span></span><span class="marquee-item">Kothrud, Pune <span class="marquee-dot">◆</span></span><span class="marquee-item">hello@chocohunt.in <span class="marquee-dot">◆</span></span><span class="marquee-item">+91 98765 43210 <span class="marquee-dot">◆</span></span><span class="marquee-item">Mon–Sat 10am–7pm <span class="marquee-dot">◆</span></span><span class="marquee-item">24hr Response <span class="marquee-dot">◆</span></span><span class="marquee-item">Corporate Gifting Available <span class="marquee-dot">◆</span></span>
+  </div>
+</div>
+
+<!-- MAIN CONTACT GRID -->
+<section class="section-pad" style="background:linear-gradient(180deg,var(--bg-primary),var(--bg-secondary))">
+  <div class="contact-full-grid">
+
+    <!-- LEFT: INFO -->
+    <div class="reveal-left">
+      <div class="contact-title-large">We'd love to<br>hear <em>from you.</em></div>
+      <p style="font-size:.95rem;font-weight:300;color:var(--text-muted);line-height:1.8;margin-bottom:2.5rem">Whether you're placing an order, enquiring about corporate gifting, or want to visit our Kothrud atelier — our team responds within 24 hours, every single time.</p>
+
+      <div class="info-card">
+        <div class="info-icon">📍</div>
+        <div>
+          <div class="info-label">Atelier Address</div>
+          <div class="info-value">ChocoHunt Atelier, Kothrud<br>Pune — 411038, Maharashtra, India</div>
+          <div class="info-sub">Visit by appointment · Mon–Sat</div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="info-icon">📞</div>
+        <div>
+          <div class="info-label">Phone</div>
+          <div class="info-value">+91 98765 43210</div>
+          <div class="info-sub">Mon–Sat · 10:00am – 7:00pm IST</div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="info-icon">✉️</div>
+        <div>
+          <div class="info-label">Email</div>
+          <div class="info-value">hello@chocohunt.in</div>
+          <div class="info-sub">We respond within 24 hours</div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="info-icon">🏢</div>
+        <div>
+          <div class="info-label">Corporate &amp; Bulk Orders</div>
+          <div class="info-value">corporate@chocohunt.in</div>
+          <div class="info-sub">Min 10 units · Custom branding available</div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="info-icon">🤝</div>
+        <div>
+          <div class="info-label">Partnerships</div>
+          <div class="info-value">partners@chocohunt.in</div>
+          <div class="info-sub">Retail · Hospitality · Events</div>
+        </div>
+      </div>
+
+      <!-- MAP EMBED -->
+      <div class="map-embed">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3783.6527!2d73.8080!3d18.5089!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bf2e67461101%3A0xa8a5a3e9fc628a55!2sKothrud%2C%20Pune%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          title="ChocoHunt Atelier Location">
+        </iframe>
+        <div class="map-embed-overlay"></div>
+        <div class="map-label">ChocoHunt Atelier · Kothrud, Pune</div>
+      </div>
+    </div>
+
+    <!-- RIGHT: FORM -->
+    <div class="form-card reveal-right">
+      <div class="form-card-title">Send a Message</div>
+      <div class="form-card-sub">We'll get back to you within 24 hours</div>
+      <div id="contact-form-msg" class="form-message"></div>
+      <form id="contact-form">
+        <div class="form-2col">
+          <div><label class="form-label-el">First Name</label><div class="fg-full"><input type="text" name="fname" placeholder="First name" required></div></div>
+          <div><label class="form-label-el">Last Name</label><div class="fg-full"><input type="text" name="lname" placeholder="Last name" required></div></div>
+        </div>
+        <div class="fg-mb"><label class="form-label-el">Email Address</label><div class="fg-full"><input type="email" name="email" placeholder="hello@example.com" required></div></div>
+        <div class="fg-mb"><label class="form-label-el">Phone Number</label><div class="fg-full"><input type="tel" name="phone" placeholder="+91 XXXXX XXXXX"></div></div>
+        <div class="fg-mb">
+          <label class="form-label-el">I'm enquiring about</label>
+          <div class="fg-full">
+            <select name="subject" required>
+              <option value="" disabled selected>Select a topic</option>
+              <option>Retail Purchase</option>
+              <option>Corporate Gifting (10+ units)</option>
+              <option>Festival / Event Hampers</option>
+              <option>Retail Partnership</option>
+              <option>Atelier Visit</option>
+              <option>Press / Media Enquiry</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="fg-mb"><label class="form-label-el">Your Message</label><div class="fg-full"><textarea name="message" rows="5" placeholder="Tell us more about what you're looking for..." required></textarea></div></div>
+        <button type="submit" class="btn-primary form-submit-btn" style="width:100%">Send Message</button>
+        <p style="font-size:.72rem;color:var(--text-muted);margin-top:1rem;text-align:center">By submitting, you agree to our <a href="#" onclick="CH.openModal('privacy');return false" style="color:var(--gold)">Privacy Policy</a></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- QUICK CONTACT CARDS -->
+<section class="section-pad-sm" style="background:var(--bg-secondary)">
+  <div class="container">
+    <div class="section-head reveal" style="margin-bottom:0">
+      <span class="s-eyebrow">Quick Reach</span>
+      <h2 class="s-title">Other Ways to <em>Connect</em></h2>
+    </div>
+    <div class="quick-contact">
+      <div class="qc-card reveal"><div class="qc-icon">📦</div><div class="qc-title">Order Enquiry</div><div class="qc-val">orders@chocohunt.in</div><div class="qc-sub">Response within 4 hours</div></div>
+      <div class="qc-card reveal delay-1"><div class="qc-icon">🎁</div><div class="qc-title">Corporate Gifting</div><div class="qc-val">corporate@chocohunt.in</div><div class="qc-sub">Min 10 units · Custom branding</div></div>
+      <div class="qc-card reveal delay-2"><div class="qc-icon">🤝</div><div class="qc-title">Partnerships</div><div class="qc-val">partners@chocohunt.in</div><div class="qc-sub">Retail · Hotels · Events</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- VISUAL STRIP -->
+<div class="vis-strip reveal" style="height:55vh">
+  <img src="https://images.unsplash.com/photo-1606312619070-d48b4c652a52?w=1800&auto=format&fit=crop&q=80" alt="ChocoHunt gift box luxury">
+  <div class="vs-overlay-center">
+    <div class="vs-text reveal delay-1" style="text-align:center">
+      <div class="vs-label">Visit Us</div>
+      <h2 class="vs-heading">Book an <em>Atelier Visit</em></h2>
+      <p class="vs-body" style="max-width:420px;margin:0 auto">Watch our chocolatiers at work, taste unreleased creations, and experience chocolate craftsmanship up close. By appointment only.</p>
+      <a href="mailto:hello@chocohunt.in?subject=Atelier Visit Request" class="btn-primary" style="margin-top:1.75rem;display:inline-block">Book a Visit</a>
+    </div>
+  </div>
+</div>
+
+<!-- SOCIAL MEDIA -->
+<section class="section-pad" style="background:var(--bg-primary)">
+  <div class="social-section reveal">
+    <div class="section-head" style="margin-bottom:0">
+      <span class="s-eyebrow">Follow Along</span>
+      <h2 class="s-title">Find Us on <em>Social</em></h2>
+      <p class="s-desc">Daily chocolate inspiration, behind-the-scenes, new launches, and giveaways — follow us everywhere.</p>
+    </div>
+    <div class="social-grid">
+      <a href="https://instagram.com" target="_blank" class="soc-big-card">
+        <div class="soc-big-icon">📸</div>
+        <div class="soc-big-name">Instagram</div>
+        <div class="soc-big-handle">@chocohunt.in</div>
+        <div class="soc-big-count">48.2K followers</div>
+      </a>
+      <a href="https://facebook.com" target="_blank" class="soc-big-card">
+        <div class="soc-big-icon">📘</div>
+        <div class="soc-big-name">Facebook</div>
+        <div class="soc-big-handle">ChocoHunt</div>
+        <div class="soc-big-count">31.5K followers</div>
+      </a>
+      <a href="https://youtube.com" target="_blank" class="soc-big-card">
+        <div class="soc-big-icon">▶️</div>
+        <div class="soc-big-name">YouTube</div>
+        <div class="soc-big-handle">ChocoHunt</div>
+        <div class="soc-big-count">12.8K subscribers</div>
+      </a>
+      <a href="https://pinterest.com" target="_blank" class="soc-big-card">
+        <div class="soc-big-icon">📌</div>
+        <div class="soc-big-name">Pinterest</div>
+        <div class="soc-big-handle">chocohunt</div>
+        <div class="soc-big-count">22.1K followers</div>
+      </a>
+      <a href="https://twitter.com" target="_blank" class="soc-big-card">
+        <div class="soc-big-icon" style="font-size:1.8rem;font-family:serif">𝕏</div>
+        <div class="soc-big-name">X / Twitter</div>
+        <div class="soc-big-handle">@chocohunt</div>
+        <div class="soc-big-count">8.4K followers</div>
+      </a>
+    </div>
+    <!-- IG FEED -->
+    <div class="ig-feed reveal" style="margin-top:2rem">
+      <div class="ig-cell"><img src="https://images.unsplash.com/photo-1548907040-4baa42d10919?w=400&auto=format&fit=crop&q=75" alt="Truffles"><div class="ig-cell-ov"><span>View</span></div></div>
+      <div class="ig-cell"><img src="https://images.unsplash.com/photo-1611271150737-c14baa5e9d71?w=400&auto=format&fit=crop&q=75" alt="Dark bars"><div class="ig-cell-ov"><span>View</span></div></div>
+      <div class="ig-cell"><img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=400&auto=format&fit=crop&q=75" alt="Chocolate pour"><div class="ig-cell-ov"><span>View</span></div></div>
+      <div class="ig-cell"><img src="https://images.unsplash.com/photo-1569542763096-1530f0b3a40a?w=400&auto=format&fit=crop&q=75" alt="Bonbons"><div class="ig-cell-ov"><span>View</span></div></div>
+      <div class="ig-cell"><img src="https://images.unsplash.com/photo-1511381939415-e44515f1d81d?w=400&auto=format&fit=crop&q=75" alt="Cocoa beans"><div class="ig-cell-ov"><span>View</span></div></div>
+      <div class="ig-cell"><img src="https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?w=400&auto=format&fit=crop&q=75" alt="Gift box"><div class="ig-cell-ov"><span>View</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section-pad" style="background:var(--bg-secondary)">
+  <div class="section-head reveal">
+    <span class="s-eyebrow">Need Help?</span>
+    <h2 class="s-title">Common <em>Questions</em></h2>
+    <div class="gold-divider"><div class="gd-line"></div><div class="gd-diamond"></div><div class="gd-line"></div></div>
+  </div>
+  <div class="faq-list reveal">
+    <div class="faq-item"><div class="faq-q">How long does delivery take? <span class="faq-icon">+</span></div><div class="faq-a">Pune deliveries are available same day or next day. Maharashtra orders take 2-3 business days. Pan-India shipping takes 3-5 business days. Express options are available on request.</div></div>
+    <div class="faq-item"><div class="faq-q">Do you offer custom corporate gifting? <span class="faq-icon">+</span></div><div class="faq-a">Absolutely. We offer fully customised corporate hampers with branded packaging, personalised message cards, and company logo embossing. Minimum order is 10 units. Email corporate@chocohunt.in for a quote.</div></div>
+    <div class="faq-item"><div class="faq-q">Can I visit the atelier in Kothrud? <span class="faq-icon">+</span></div><div class="faq-a">Yes! Atelier visits are available by appointment Monday to Saturday. Email hello@chocohunt.in or call us to schedule. You'll get to taste our latest creations and watch our chocolatiers at work.</div></div>
+    <div class="faq-item"><div class="faq-q">Do you ship chocolates safely in summer? <span class="faq-icon">+</span></div><div class="faq-a">All our chocolates are packed in temperature-controlled, insulated packaging. During peak summer months (April–June) we use ice gel packs and recommend next-day delivery for orders within India.</div></div>
+    <div class="faq-item"><div class="faq-q">What is your return or refund policy? <span class="faq-icon">+</span></div><div class="faq-a">We accept returns only for damaged or incorrect items. Claims must be raised within 24 hours of delivery with photo evidence. Approved refunds are processed within 5-7 business days. Email hello@chocohunt.in.</div></div>
+    <div class="faq-item"><div class="faq-q">How can I become a retail partner? <span class="faq-icon">+</span></div><div class="faq-a">Visit our Partners page and fill the partnership enquiry form, or email partners@chocohunt.in with your business details. Our team will get back within 2 business days to discuss terms and options.</div></div>
+    <div class="faq-item"><div class="faq-q">Are your chocolates vegetarian / vegan? <span class="faq-icon">+</span></div><div class="faq-a">Most of our dark chocolate range is vegetarian and many bars are vegan-friendly. Our milk chocolate and cream-filled varieties contain dairy. Each product is clearly labelled. Contact us for specific dietary queries.</div></div>
+  </div>
+</section>
+
+<!-- ADDRESS CARD -->
+<section class="section-pad-sm" style="background:var(--bg-primary);border-top:1px solid var(--border)">
+  <div class="address-card reveal">
+    <div class="address-brand">Choco<span>Hunt</span></div>
+    <div class="address-sub">Premium Handcrafted Chocolates · Pune, India</div>
+    <div class="gold-divider"><div class="gd-line"></div><div class="gd-diamond"></div><div class="gd-line"></div></div>
+    <div class="address-line" style="margin-top:1.5rem">ChocoHunt Atelier · Kothrud, Pune — 411038<br>Maharashtra, India<br>+91 98765 43210 &nbsp;·&nbsp; hello@chocohunt.in</div>
+    <div class="address-badge">Managed &amp; Designed by LeadKnight</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div><div class="footer-brand-name">Choco<span>Hunt</span></div><div class="footer-tagline">Crafted for True Chocolate Lovers</div><form class="footer-newsletter newsletter-form"><input type="email" placeholder="Newsletter" required><button type="submit">Subscribe</button></form></div>
+    <div><div class="footer-col-title">Navigate</div><ul class="footer-links"><li><a href="home.html">Home</a></li><li><a href="collection.html">Collections</a></li><li><a href="about.html">About</a></li><li><a href="partners.html">Partners</a></li><li><a href="reviews.html">Reviews</a></li><li><a href="contacts.html">Contact</a></li></ul></div>
+    <div><div class="footer-col-title">Collections</div><ul class="footer-links"><li><a href="collection.html">Dark Bars</a></li><li><a href="collection.html">Truffles</a></li><li><a href="collection.html">Gift Boxes</a></li><li><a href="collection.html">Hampers</a></li></ul></div>
+    <div><div class="footer-col-title">Legal</div><ul class="footer-links"><li><a href="#" onclick="CH.openModal('privacy');return false">Privacy Policy</a></li><li><a href="#" onclick="CH.openModal('terms');return false">Terms</a></li><li><a href="#" onclick="CH.openModal('shipping');return false">Shipping</a></li><li><a href="#" onclick="CH.openModal('refund');return false">Refunds</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><div class="footer-copy">© 2024 ChocoHunt. All rights reserved.</div><div class="footer-credits">Designed &amp; Managed by LeadKnight</div><button class="back-to-top">↑</button></div>
+</footer>
+
+<!-- AUTH MODAL -->
+<div class="auth-modal-overlay" id="auth-modal-overlay">
+  <div class="auth-modal"><button class="auth-modal-close" onclick="CH.closeAuthModal()">✕</button><div class="auth-logo">Choco<span>Hunt</span></div><div class="auth-subtitle">Premium Chocolate Club</div><div class="auth-tabs"><button class="auth-tab active" data-tab="login">Login</button><button class="auth-tab" data-tab="register">Sign Up</button></div><form class="auth-form active" id="form-login"><div class="auth-error" id="login-error"></div><div class="auth-field"><label>Email</label><input type="email" id="login-email" placeholder="hello@example.com" required></div><div class="auth-field"><label>Password</label><input type="password" id="login-password" placeholder="••••••••" required></div><button type="submit" class="auth-submit">Login</button></form><form class="auth-form" id="form-register"><div class="auth-error" id="reg-error"></div><div class="auth-success" id="reg-success"></div><div class="auth-field"><label>Name</label><input type="text" id="reg-name" placeholder="Your name" required></div><div class="auth-field"><label>Email</label><input type="email" id="reg-email" placeholder="hello@example.com" required></div><div class="auth-field"><label>Password</label><input type="password" id="reg-password" placeholder="Min 8 chars" required minlength="8"></div><button type="submit" class="auth-submit">Create Account</button></form></div>
+</div>
+
+<!-- LEGAL MODALS -->
+<div class="page-modal" id="modal-privacy" data-modal="privacy"><button class="modal-close-btn" onclick="CH.closeModal('privacy')">✕</button><div class="modal-inner"><div class="modal-title">Privacy Policy</div><div class="modal-sub">Jan 2024</div><div class="modal-body"><h3>Data Collection</h3><p>We collect name, email, phone, and address for order processing and contact purposes.</p><h3>Contact</h3><p>privacy@chocohunt.in</p></div></div></div>
+<div class="page-modal" id="modal-terms" data-modal="terms"><button class="modal-close-btn" onclick="CH.closeModal('terms')">✕</button><div class="modal-inner"><div class="modal-title">Terms &amp; Conditions</div><div class="modal-sub">Jan 2024</div><div class="modal-body"><h3>Usage</h3><p>By using this site you accept our terms. Governing law: Maharashtra, India.</p></div></div></div>
+<div class="page-modal" id="modal-shipping" data-modal="shipping"><button class="modal-close-btn" onclick="CH.closeModal('shipping')">✕</button><div class="modal-inner"><div class="modal-title">Shipping Policy</div><div class="modal-sub">Jan 2024</div><div class="modal-body"><h3>Timelines</h3><ul><li>Pune: Same/Next day</li><li>Maharashtra: 2-3 days</li><li>Pan India: 3-5 days</li></ul><h3>Free Shipping</h3><p>Orders above ₹1,500. Standard ₹99 below.</p></div></div></div>
+<div class="page-modal" id="modal-refund" data-modal="refund"><button class="modal-close-btn" onclick="CH.closeModal('refund')">✕</button><div class="modal-inner"><div class="modal-title">Refund Policy</div><div class="modal-sub">Jan 2024</div><div class="modal-body"><h3>Eligibility</h3><p>Damaged or incorrect items only. Claim within 24hrs.</p><h3>Process</h3><p>Email hello@chocohunt.in with photos. Refunds in 5-7 days.</p></div></div></div>
+
+<script src="assets/js/main.js"></script>
+<script>
+// FAQ ACCORDION
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
+
+// CONTACT FORM (override for full name split)
+document.getElementById('contact-form').addEventListener('submit', async e => {
+  e.preventDefault();
+  const btn = e.target.querySelector('.form-submit-btn');
+  const msgEl = document.getElementById('contact-form-msg');
+  const fd = new FormData(e.target);
+  const data = {
+    name: `${fd.get('fname')} ${fd.get('lname')}`.trim(),
+    email: fd.get('email'), phone: fd.get('phone'),
+    subject: fd.get('subject'), message: fd.get('message')
+  };
+  btn.disabled = true; btn.textContent = 'Sending...';
+  try {
+    await fetch('http://localhost:3001/api/contact', {
+      method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data)
+    });
+  } catch(_) {}
+  msgEl.className = 'form-message success';
+  msgEl.textContent = '✓ Message sent! We\'ll get back to you within 24 hours.';
+  e.target.reset();
+  btn.disabled = false; btn.textContent = 'Send Message';
+  CH.showToast('Message sent! 🍫');
+});
+</script>
+</body>
+</html>

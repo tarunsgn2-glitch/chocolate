@@ -1,0 +1,27 @@
+{
+  "name": "chocohunt-backend",
+  "version": "1.0.0",
+  "description": "ChocoHunt Premium Chocolate Brand — Backend API. Managed & Designed by LeadKnight.",
+  "main": "backend/server.js",
+  "scripts": {
+    "start":    "node backend/server.js",
+    "dev":      "nodemon backend/server.js",
+    "install-deps": "npm install"
+  },
+  "dependencies": {
+    "express":    "^4.18.2",
+    "cors":       "^2.8.5",
+    "bcryptjs":   "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
+    "nodemailer": "^6.9.7"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "keywords": ["chocohunt", "chocolate", "premium", "leadknight", "pune"],
+  "author": "LeadKnight",
+  "license": "MIT"
+}

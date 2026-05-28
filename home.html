@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ChocoHunt — Crafted for True Chocolate Lovers</title>
+<meta name="description" content="ChocoHunt — India's most luxurious handcrafted premium chocolates. Dark bars, truffles, gifting collections, and dessert experiences from Pune.">
+<meta property="og:title" content="ChocoHunt — Crafted for True Chocolate Lovers">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="assets/css/style.css">
+<script>
+  // Apply theme before paint to avoid flash
+  (function(){const t=localStorage.getItem('ch-theme')||'dark';document.documentElement.setAttribute('data-theme',t);})();
+</script>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+<div id="scroll-progress"></div>
+
+<!-- LOADER -->
+<div id="page-loader">
+  <div class="loader-logo-text">Choco<span>Hunt</span></div>
+  <div class="loader-bar-track"><div class="loader-bar-fill"></div></div>
+  <div class="loader-tag">Crafted for True Chocolate Lovers</div>
+</div>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobile-nav">
+  <a href="home.html">Home</a>
+  <a href="collection.html">Collections</a>
+  <a href="about.html">About</a>
+  <a href="partners.html">Partners</a>
+  <a href="reviews.html">Reviews</a>
+  <a href="contacts.html">Contact</a>
+  <div class="mobile-nav-actions">
+    <button class="theme-toggle" title="Toggle theme">☀️</button>
+    <button class="btn-login" data-auth-open="login">Login</button>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a href="home.html" class="nav-logo">Choco<span>Hunt</span></a>
+  <ul class="nav-links">
+    <li><a href="home.html" class="active">Home</a></li>
+    <li><a href="collection.html">Collections</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="partners.html">Partners</a></li>
+    <li><a href="reviews.html">Reviews</a></li>
+    <li><a href="contacts.html">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="theme-toggle" title="Toggle theme">☀️</button>
+    <!-- Logged out state -->
+    <div class="auth-logged-out" style="display:flex;gap:.75rem;align-items:center">
+      <button class="btn-login" data-auth-open="login">Login</button>
+      <button class="btn-nav-cta" data-auth-open="register">Sign Up</button>
+    </div>
+    <!-- Logged in state -->
+    <div class="auth-logged-in" style="display:none;gap:.75rem;align-items:center">
+      <div class="nav-user">
+        <div class="nav-user-dot"></div>
+        <span class="nav-user-name">User</span>
+      </div>
+      <button class="btn-logout" data-logout>Logout</button>
+    </div>
+  </div>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- ═══════════════════════════════════════════ HERO -->
+<section class="hero-page" id="hero">
+  <div class="hero-bg-img">
+    <img src="https://images.unsplash.com/photo-1481391319762-47dff72954d9?w=1800&auto=format&fit=crop&q=80" alt="Premium dark chocolate bars">
+    <div class="hero-bg-grad"></div>
+  </div>
+  <div class="hero-content">
+    <span class="h-eyebrow h-eye">Est. 2020 &nbsp;·&nbsp; Premium Handcrafted Chocolates &nbsp;·&nbsp; Pune, India</span>
+    <h1 class="h-main-title h-title">Where Cocoa<br>Becomes <em>Art</em></h1>
+    <p class="h-main-sub h-sub">Every piece crafted with intention. Every bite, a moment of pure luxury. Discover India's most exquisite handcrafted chocolate collection.</p>
+    <div class="h-btn-group h-btns">
+      <a href="collection.html" class="btn-primary">Shop Now</a>
+      <a href="about.html" class="btn-outline">Our Story</a>
+    </div>
+  </div>
+  <div class="scroll-hint h-scroll">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-band" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-item">Dark Chocolate Bars <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">Handcrafted Truffles <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">Luxury Gift Boxes <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">Festival Hampers <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">Limited Editions <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">Corporate Gifting <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">Dark Chocolate Bars <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">Handcrafted Truffles <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">Luxury Gift Boxes <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">Festival Hampers <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">Limited Editions <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">Corporate Gifting <span class="marquee-dot">◆</span></span>
+  </div>
+</div>
+
+<!-- VISUAL STRIP 1 -->
+<div class="vis-strip reveal">
+  <img src="https://images.unsplash.com/photo-1548907040-4baa42d10919?w=1800&auto=format&fit=crop&q=80" alt="Handcrafted chocolate truffles">
+  <div class="vs-overlay-left">
+    <div class="vs-text reveal delay-2">
+      <div class="vs-label">The Craft</div>
+      <h2 class="vs-heading">Made by<br><em>Hand. Always.</em></h2>
+      <p class="vs-body">No machines. No shortcuts. Every truffle is shaped by skilled hands — tempering, moulding, and finishing to perfection.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ COLLECTIONS PREVIEW -->
+<section class="section-pad" style="background:linear-gradient(180deg,var(--bg-primary) 0%,var(--bg-secondary) 100%)">
+  <div class="section-head reveal">
+    <span class="s-eyebrow">Our Finest</span>
+    <h2 class="s-title">Premium <em>Collections</em></h2>
+    <div class="gold-divider"><div class="gd-line"></div><div class="gd-diamond"></div><div class="gd-line"></div></div>
+    <p class="s-desc">Each piece is a masterwork — hours of craftsmanship poured into every creation.</p>
+  </div>
+  <div class="collections-grid">
+    <div class="choco-card reveal">
+      <img src="https://images.unsplash.com/photo-1611271150737-c14baa5e9d71?w=800&auto=format&fit=crop&q=80" alt="Dark chocolate bars">
+      <div class="card-gradient"></div>
+      <span class="card-tag-badge">Bestseller</span>
+      <div class="card-body">
+        <div class="card-label">Dark Chocolate</div>
+        <div class="card-name">Noir<br>Collection</div>
+        <div class="card-desc">Single-origin 72% dark chocolate bars, sourced from the finest cocoa plantations worldwide.</div>
+        <a href="collection.html" class="card-qv">Explore</a>
+      </div>
+    </div>
+    <div class="choco-card reveal delay-1">
+      <img src="https://images.unsplash.com/photo-1549007994-cb92caebd54b?w=800&auto=format&fit=crop&q=80" alt="Luxury chocolate truffles">
+      <div class="card-gradient"></div>
+      <div class="card-body">
+        <div class="card-label">Signature</div>
+        <div class="card-name">Truffle<br>Atelier</div>
+        <div class="card-desc">Hand-rolled truffles in Belgian chocolate with exotic ganache fillings and edible gold dust.</div>
+        <a href="collection.html" class="card-qv">Explore</a>
+      </div>
+    </div>
+    <div class="choco-card reveal delay-2">
+      <img src="https://images.unsplash.com/photo-1606312619070-d48b4c652a52?w=800&auto=format&fit=crop&q=80" alt="Luxury gift box">
+      <div class="card-gradient"></div>
+      <span class="card-tag-badge">Gift</span>
+      <div class="card-body">
+        <div class="card-label">Luxury Gifting</div>
+        <div class="card-name">Maison<br>Gift Box</div>
+        <div class="card-desc">Curated luxury gift boxes for every occasion, wrapped in the finest bespoke packaging.</div>
+        <a href="collection.html" class="card-qv">Explore</a>
+      </div>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:3.5rem" class="reveal">
+    <a href="collection.html" class="btn-outline">View All Collections</a>
+  </div>
+</section>
+
+<!-- SPLIT: ABOUT TEASER -->
+<div class="split-section">
+  <div class="split-img reveal-left">
+    <img src="https://images.unsplash.com/photo-1599599810769-bcde5a160d32?w=900&auto=format&fit=crop&q=80" alt="Artisan chocolatier crafting chocolate">
+    <div class="split-img-overlay"></div>
+  </div>
+  <div class="split-content reveal-right">
+    <span class="split-eyebrow">Our Story</span>
+    <h2 class="split-title">Born from a<br><em>love of cocoa.</em></h2>
+    <p class="split-body">ChocoHunt was founded in Pune with one belief: that chocolate is not a snack — it is an experience. We source the rarest cocoa from around the globe and craft it in our Kothrud atelier.</p>
+    <p class="split-body">Every bar, truffle, and gift box is a testament to our uncompromising commitment to quality — from bean selection to final packaging.</p>
+    <div class="split-stats">
+      <div><div class="stat-number">50+</div><div class="stat-label">Varieties</div></div>
+      <div><div class="stat-number">12K+</div><div class="stat-label">Happy Clients</div></div>
+      <div><div class="stat-number">100%</div><div class="stat-label">Handcrafted</div></div>
+    </div>
+    <a href="about.html" class="btn-outline">Read Our Story</a>
+  </div>
+</div>
+
+<!-- VISUAL STRIP 2: ORIGIN -->
+<div class="vis-strip reveal" style="height:60vh">
+  <img src="https://images.unsplash.com/photo-1511381939415-e44515f1d81d?w=1800&auto=format&fit=crop&q=80" alt="Cocoa beans origin">
+  <div class="vs-overlay-right">
+    <div class="vs-text reveal delay-2" style="text-align:right">
+      <div class="vs-label">The Source</div>
+      <h2 class="vs-heading">Finest Cocoa.<br><em>Every Time.</em></h2>
+      <p class="vs-body">Ecuador, Madagascar, Ghana — only the best makes it to our atelier. The terroir of each origin speaks through every bite.</p>
+    </div>
+  </div>
+</div>
+
+<!-- PHOTO MOSAIC -->
+<div class="mosaic reveal">
+  <div class="mos-cell mos-big">
+    <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=900&auto=format&fit=crop&q=80" alt="Dark chocolate pour">
+    <div class="mos-overlay"></div>
+    <div class="mos-label"><span>The Process</span></div>
+  </div>
+  <div class="mos-cell">
+    <img src="https://images.unsplash.com/photo-1548907040-4baa42d10919?w=600&auto=format&fit=crop&q=80" alt="Chocolate truffles">
+    <div class="mos-overlay"></div>
+    <div class="mos-label"><span>Truffles</span></div>
+  </div>
+  <div class="mos-cell">
+    <img src="https://images.unsplash.com/photo-1481391319762-47dff72954d9?w=600&auto=format&fit=crop&q=80" alt="Dark bars">
+    <div class="mos-overlay"></div>
+    <div class="mos-label"><span>Dark Bars</span></div>
+  </div>
+  <div class="mos-cell">
+    <img src="https://images.unsplash.com/photo-1569542763096-1530f0b3a40a?w=600&auto=format&fit=crop&q=80" alt="Bonbons">
+    <div class="mos-overlay"></div>
+    <div class="mos-label"><span>Bonbons</span></div>
+  </div>
+  <div class="mos-cell">
+    <img src="https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?w=600&auto=format&fit=crop&q=80" alt="Gift boxes">
+    <div class="mos-overlay"></div>
+    <div class="mos-label"><span>Gift Boxes</span></div>
+  </div>
+</div>
+
+<!-- PARALLAX QUOTE -->
+<div class="pq-section">
+  <div class="pq-bg"><img src="https://images.unsplash.com/photo-1610450949065-1f2841536c88?w=1800&auto=format&fit=crop&q=80" alt="Melted chocolate"></div>
+  <div class="pq-overlay"></div>
+  <div class="pq-content reveal">
+    <div class="pq-quote">"Chocolate is not just a flavour — it is a <strong>feeling,</strong> a memory, an act of love for yourself and those who matter most."</div>
+    <div class="pq-attr">— ChocoHunt Atelier, Pune</div>
+  </div>
+</div>
+
+<!-- TESTIMONIALS PREVIEW -->
+<section class="section-pad" style="background:linear-gradient(180deg,var(--bg-primary),var(--bg-secondary));overflow:hidden">
+  <div class="section-head reveal">
+    <span class="s-eyebrow">What People Say</span>
+    <h2 class="s-title">Voices of <em>Delight</em></h2>
+  </div>
+  <div class="testi-wrapper reveal">
+    <div class="testi-track" id="testi-track">
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><div class="testi-text">"The dark chocolate truffle collection is unlike anything I've had in India. Pure luxury in every bite."</div><div class="testi-author"><div class="testi-avatar">PR</div><div><div class="testi-name">Priya Rathod</div><div class="testi-location">Mumbai · Corporate Client</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><div class="testi-text">"Ordered a Diwali hamper for our team — the presentation was breathtaking. Every single person loved it."</div><div class="testi-author"><div class="testi-avatar">AK</div><div><div class="testi-name">Arvind Kulkarni</div><div class="testi-location">Pune · Business Owner</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><div class="testi-text">"ChocoHunt's gift box was the most beautiful thing I've ever gifted. Packaging and chocolate — both exquisite."</div><div class="testi-author"><div class="testi-avatar">SN</div><div><div class="testi-name">Sneha Nair</div><div class="testi-location">Bangalore · Individual</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><div class="testi-text">"The 72% dark bars are sophisticated and complex. A brand that finally takes chocolate as seriously as wine."</div><div class="testi-author"><div class="testi-avatar">VM</div><div><div class="testi-name">Varun Mehta</div><div class="testi-location">Delhi · Chocolatier</div></div></div></div>
+    </div>
+    <div class="testi-controls">
+      <button class="testi-btn" id="testi-prev">&#8592;</button>
+      <button class="testi-btn" id="testi-next">&#8594;</button>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:3rem" class="reveal">
+    <a href="reviews.html" class="btn-ghost">Read All Reviews</a>
+  </div>
+</section>
+
+<!-- VISUAL STRIP 3: GIFTING -->
+<div class="vis-strip reveal" style="height:60vh">
+  <img src="https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?w=1800&auto=format&fit=crop&q=80" alt="Luxury chocolate gift box">
+  <div class="vs-overlay-left">
+    <div class="vs-text reveal delay-2">
+      <div class="vs-label">Gifting</div>
+      <h2 class="vs-heading">The Gift<br><em>of Joy.</em></h2>
+      <p class="vs-body">From intimate birthdays to grand corporate hampers — turn every occasion into an unforgettable memory.</p>
+      <a href="contacts.html" class="btn-primary" style="margin-top:1.5rem">Order Now</a>
+    </div>
+  </div>
+</div>
+
+<!-- ADDRESS + FOOTER -->
+<section class="section-pad-sm" style="background:var(--bg-primary);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="address-card reveal">
+    <div class="address-brand">Choco<span>Hunt</span></div>
+    <div class="address-sub">Premium Handcrafted Chocolates · Pune, India</div>
+    <div class="gold-divider"><div class="gd-line"></div><div class="gd-diamond"></div><div class="gd-line"></div></div>
+    <div class="address-line" style="margin-top:1.5rem">
+      ChocoHunt Atelier · Kothrud, Pune — 411038<br>
+      Maharashtra, India<br>
+      +91 98765 43210 &nbsp;·&nbsp; hello@chocohunt.in
+    </div>
+    <div class="address-badge">Managed &amp; Designed by LeadKnight</div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand-name">Choco<span>Hunt</span></div>
+      <div class="footer-tagline">Crafted for True Chocolate Lovers</div>
+      <p style="font-size:.8rem;font-weight:300;color:var(--text-muted);max-width:280px;line-height:1.7">Handcrafted premium chocolates from Pune. Every piece tells a story of passion, craft, and the finest cocoa.</p>
+      <form class="footer-newsletter newsletter-form">
+        <input type="email" placeholder="Your email for updates" required>
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+    <div>
+      <div class="footer-col-title">Navigate</div>
+      <ul class="footer-links">
+        <li><a href="home.html">Home</a></li>
+        <li><a href="collection.html">Collections</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="partners.html">Partners</a></li>
+        <li><a href="reviews.html">Reviews</a></li>
+        <li><a href="contacts.html">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Collections</div>
+      <ul class="footer-links">
+        <li><a href="collection.html">Dark Chocolate Bars</a></li>
+        <li><a href="collection.html">Truffle Atelier</a></li>
+        <li><a href="collection.html">Maison Gift Boxes</a></li>
+        <li><a href="collection.html">Festival Hampers</a></li>
+        <li><a href="collection.html">Velvet Series</a></li>
+        <li><a href="collection.html">Limited Edition</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Legal</div>
+      <ul class="footer-links">
+        <li><a href="#" onclick="CH.openModal('privacy');return false">Privacy Policy</a></li>
+        <li><a href="#" onclick="CH.openModal('terms');return false">Terms &amp; Conditions</a></li>
+        <li><a href="#" onclick="CH.openModal('shipping');return false">Shipping Policy</a></li>
+        <li><a href="#" onclick="CH.openModal('refund');return false">Refund Policy</a></li>
+      </ul>
+      <div style="margin-top:2rem">
+        <div class="footer-col-title">Social</div>
+        <div class="footer-social-row">
+          <a href="#" class="footer-social-icon">IG</a>
+          <a href="#" class="footer-social-icon">FB</a>
+          <a href="#" class="footer-social-icon">YT</a>
+          <a href="#" class="footer-social-icon">𝕏</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2024 ChocoHunt. All rights reserved.</div>
+    <div class="footer-credits">Designed &amp; Managed by LeadKnight</div>
+    <button class="back-to-top">↑</button>
+  </div>
+</footer>
+
+<!-- AUTH MODAL -->
+<div class="auth-modal-overlay" id="auth-modal-overlay">
+  <div class="auth-modal">
+    <button class="auth-modal-close" onclick="CH.closeAuthModal()">✕</button>
+    <div class="auth-logo">Choco<span>Hunt</span></div>
+    <div class="auth-subtitle">Premium Chocolate Club</div>
+    <div class="auth-tabs">
+      <button class="auth-tab active" data-tab="login">Login</button>
+      <button class="auth-tab" data-tab="register">Create Account</button>
+    </div>
+    <!-- LOGIN FORM -->
+    <form class="auth-form active" id="form-login">
+      <div class="auth-error" id="login-error"></div>
+      <div class="auth-field"><label>Email Address</label><input type="email" id="login-email" placeholder="hello@example.com" required></div>
+      <div class="auth-field"><label>Password</label><input type="password" id="login-password" placeholder="••••••••" required></div>
+      <button type="submit" class="auth-submit" data-text="Login to Account">Login to Account</button>
+      <div class="auth-msg">Forgot your password? <a href="#" style="color:var(--gold)">Reset here</a></div>
+    </form>
+    <!-- REGISTER FORM -->
+    <form class="auth-form" id="form-register">
+      <div class="auth-error" id="reg-error"></div>
+      <div class="auth-success" id="reg-success"></div>
+      <div class="auth-field"><label>Full Name</label><input type="text" id="reg-name" placeholder="Your full name" required></div>
+      <div class="auth-field"><label>Email Address</label><input type="email" id="reg-email" placeholder="hello@example.com" required></div>
+      <div class="auth-field"><label>Password</label><input type="password" id="reg-password" placeholder="Min. 8 characters" required minlength="8"></div>
+      <button type="submit" class="auth-submit" data-text="Create Account">Create Account</button>
+      <div class="auth-msg">By signing up, you agree to our <a href="#" onclick="CH.openModal('terms');return false" style="color:var(--gold)">Terms</a></div>
+    </form>
+  </div>
+</div>
+
+<!-- LEGAL MODALS -->
+<div class="page-modal" id="modal-privacy" data-modal="privacy">
+  <button class="modal-close-btn" onclick="CH.closeModal('privacy')">✕</button>
+  <div class="modal-inner"><div class="modal-title">Privacy Policy</div><div class="modal-sub">Last Updated: January 2024</div><div class="modal-body"><h3>1. Information We Collect</h3><p>We collect information you provide when placing orders, creating accounts, or contacting support — including name, email, phone, delivery address, and payment info.</p><h3>2. How We Use It</h3><p>To process orders, send confirmations, provide customer support, and send marketing communications with your consent.</p><h3>3. Cookies</h3><p>We use cookies to enhance browsing, analyze traffic, and personalize content. Control settings through your browser.</p><h3>4. Your Rights</h3><ul><li>Access your personal data</li><li>Correct inaccurate information</li><li>Request deletion of your data</li><li>Opt out of marketing</li></ul><h3>5. Contact</h3><p>privacy@chocohunt.in · +91 98765 43210</p></div></div>
+</div>
+<div class="page-modal" id="modal-terms" data-modal="terms">
+  <button class="modal-close-btn" onclick="CH.closeModal('terms')">✕</button>
+  <div class="modal-inner"><div class="modal-title">Terms &amp; Conditions</div><div class="modal-sub">Last Updated: January 2024</div><div class="modal-body"><h3>1. Acceptance</h3><p>By using ChocoHunt's website, you accept these Terms. If you disagree, please do not use our website.</p><h3>2. Orders</h3><p>All orders are subject to availability. We may refuse or cancel orders. Payment must be received before processing.</p><h3>3. Intellectual Property</h3><p>All content is property of ChocoHunt, protected by applicable IP laws. Unauthorized use is prohibited.</p><h3>4. Governing Law</h3><p>Governed by Maharashtra, India laws. Disputes subject to Pune courts.</p></div></div>
+</div>
+<div class="page-modal" id="modal-shipping" data-modal="shipping">
+  <button class="modal-close-btn" onclick="CH.closeModal('shipping')">✕</button>
+  <div class="modal-inner"><div class="modal-title">Shipping Policy</div><div class="modal-sub">Last Updated: January 2024</div><div class="modal-body"><h3>Processing</h3><p>Orders processed within 1-2 business days. After 2pm IST, the following day.</p><h3>Timelines</h3><ul><li>Pune: Same / Next day</li><li>Maharashtra: 2-3 days</li><li>Pan India: 3-5 days</li></ul><h3>Charges</h3><p>Free shipping above ₹1,500. Standard ₹99 below threshold.</p></div></div>
+</div>
+<div class="page-modal" id="modal-refund" data-modal="refund">
+  <button class="modal-close-btn" onclick="CH.closeModal('refund')">✕</button>
+  <div class="modal-inner"><div class="modal-title">Refund Policy</div><div class="modal-sub">Last Updated: January 2024</div><div class="modal-body"><h3>Eligibility</h3><p>Returns accepted only for damaged goods, incorrect items, or quality issues. Claims within 24 hours of delivery.</p><h3>How to Claim</h3><ul><li>Email hello@chocohunt.in with order number</li><li>Attach photos of the issue</li></ul><h3>Resolution</h3><p>Claims reviewed within 24 hours. Refunds processed in 5-7 business days.</p></div></div>
+</div>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-# 🍫 ChocoHunt — Premium Chocolate Brand Website
+# 🍫 DarkEmber — Premium Chocolate Brand Website
 **Managed & Designed by LeadKnight**
 
 ---
@@ -6,7 +6,7 @@
 ## 📁 Project Structure
 
 ```
-chocohunt-website/
+DarkEmber-website/
 │
 ├── home.html           ← Homepage (Hero, Collections, About, Testimonials)
 ├── collection.html     ← Full Collections with filter tabs
@@ -43,7 +43,7 @@ Just double-click `home.html` in your browser — all pages, animations, theme t
 
 ```bash
 # Step 1 — Install dependencies
-cd chocohunt-website
+cd DarkEmber-website
 npm install
 
 # Step 2 — Start the backend server
@@ -150,7 +150,7 @@ For production at scale, swap the `loadDB/saveDB` functions for MongoDB / Prisma
 
 ## 🏷️ Credits
 
-**Brand:** ChocoHunt — Premium Handcrafted Chocolates, Pune  
+**Brand:** DarkEmber — Premium Handcrafted Chocolates, Pune  
 **Design & Development:** LeadKnight  
 **Stack:** HTML5 · CSS3 (Custom Properties) · Vanilla JS · Node.js · Express  
 **Images:** Unsplash (free commercial use)  
@@ -158,4 +158,4 @@ For production at scale, swap the `loadDB/saveDB` functions for MongoDB / Prisma
 
 ---
 
-*© 2024 ChocoHunt. All rights reserved. Website by LeadKnight.*
+*© 2024 DarkEmber. All rights reserved. Website by LeadKnight.*

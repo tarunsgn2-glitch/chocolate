@@ -1,5 +1,5 @@
 /* ============================================================
-   CHOCOHUNT — Global JavaScript
+   DarkEmber — Global JavaScript
    Managed & Designed by LeadKnight
    ============================================================ */
 
@@ -488,7 +488,7 @@ async function handleNewsletter(e) {
 
   btn.textContent = '✓';
   input.value = '';
-  showToast('Subscribed! Welcome to the ChocoHunt family 🍫');
+  showToast('Subscribed! Welcome to the DarkEmber family 🍫');
   setTimeout(() => { btn.textContent = orig; btn.disabled = false; }, 3000);
 }
 

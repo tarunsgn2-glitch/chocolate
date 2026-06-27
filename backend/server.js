@@ -1,5 +1,5 @@
 /* ============================================================
-   CHOCOHUNT — Node.js Express Backend
+   DarkEmber — Node.js Express Backend
    Managed & Designed by LeadKnight
    Run: npm install && node server.js
    ============================================================ */
@@ -14,7 +14,7 @@ const path       = require('path');
 
 const app  = express();
 const PORT = process.env.PORT || 3001;
-const JWT_SECRET = process.env.JWT_SECRET || 'chocohunt_secret_2024_leadknight';
+const JWT_SECRET = process.env.JWT_SECRET || 'DarkEmber_secret_2024_leadknight';
 
 /* ── MIDDLEWARE ── */
 app.use(cors({
@@ -49,7 +49,7 @@ const mailer = nodemailer.createTransport({
   port: 587,
   secure: false,
   auth: {
-    user: process.env.SMTP_USER || 'hello@chocohunt.in',
+    user: process.env.SMTP_USER || 'hello@DarkEmber.in',
     pass: process.env.SMTP_PASS || 'your_app_password_here',
   },
 });
@@ -57,7 +57,7 @@ const mailer = nodemailer.createTransport({
 async function sendMail(to, subject, html) {
   try {
     await mailer.sendMail({
-      from: '"ChocoHunt 🍫" <hello@chocohunt.in>',
+      from: '"DarkEmber 🍫" <hello@DarkEmber.in>',
       to, subject, html,
     });
     console.log(`📧 Email sent to ${to}`);
@@ -112,11 +112,11 @@ app.post('/api/auth/register', async (req, res) => {
     saveDB(db);
 
     // Welcome email
-    await sendMail(email, 'Welcome to ChocoHunt! 🍫', `
+    await sendMail(email, 'Welcome to DarkEmber! 🍫', `
       <div style="font-family:Georgia,serif;max-width:560px;margin:0 auto;background:#1a0a00;color:#f5ede0;padding:3rem">
         <h1 style="font-weight:300;color:#f5ede0;font-size:2.5rem;margin-bottom:.5rem">Welcome, ${name}!</h1>
         <p style="color:#c8962c;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;margin-bottom:2rem">Crafted for True Chocolate Lovers</p>
-        <p style="color:rgba(245,237,224,.7);line-height:1.8">Thank you for joining the ChocoHunt family. You now have access to exclusive collections, early access to limited editions, and our most luxurious gifting experiences.</p>
+        <p style="color:rgba(245,237,224,.7);line-height:1.8">Thank you for joining the DarkEmber family. You now have access to exclusive collections, early access to limited editions, and our most luxurious gifting experiences.</p>
         <a href="http://localhost:3000/collection.html" style="display:inline-block;margin-top:2rem;padding:1rem 2.5rem;background:#c8962c;color:#0d0704;text-decoration:none;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500">Shop Now</a>
         <p style="color:rgba(245,237,224,.3);font-size:.75rem;margin-top:3rem">Managed & Designed by LeadKnight</p>
       </div>
@@ -194,7 +194,7 @@ app.post('/api/contact', async (req, res) => {
     saveDB(db);
 
     // Notify admin
-    await sendMail('hello@chocohunt.in', `New Contact: ${subject || 'General Enquiry'} — ${name}`, `
+    await sendMail('hello@DarkEmber.in', `New Contact: ${subject || 'General Enquiry'} — ${name}`, `
       <div style="font-family:sans-serif;max-width:500px">
         <h2>New Contact Form Submission</h2>
         <table style="width:100%;border-collapse:collapse">
@@ -208,15 +208,15 @@ app.post('/api/contact', async (req, res) => {
     `);
 
     // Auto-reply to customer
-    await sendMail(email, 'We received your message — ChocoHunt 🍫', `
+    await sendMail(email, 'We received your message — DarkEmber 🍫', `
       <div style="font-family:Georgia,serif;max-width:560px;background:#1a0a00;color:#f5ede0;padding:3rem">
         <h1 style="font-weight:300;font-size:2rem;color:#f5ede0">Hello, ${name}!</h1>
         <p style="color:#c8962c;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;margin-bottom:1.5rem">Message Received</p>
-        <p style="color:rgba(245,237,224,.7);line-height:1.8">Thank you for reaching out to ChocoHunt. We've received your message and our team will get back to you within 24 hours.</p>
+        <p style="color:rgba(245,237,224,.7);line-height:1.8">Thank you for reaching out to DarkEmber. We've received your message and our team will get back to you within 24 hours.</p>
         <div style="margin:2rem 0;padding:1.5rem;border:1px solid rgba(200,150,44,.2)">
           <p style="color:rgba(245,237,224,.5);font-size:.85rem;margin:0"><strong style="color:#c8962c">Your enquiry:</strong> ${subject || 'General Enquiry'}</p>
         </div>
-        <p style="color:rgba(245,237,224,.4);font-size:.75rem;margin-top:2rem">ChocoHunt Atelier · Kothrud, Pune | hello@chocohunt.in</p>
+        <p style="color:rgba(245,237,224,.4);font-size:.75rem;margin-top:2rem">DarkEmber Atelier · Kothrud, Pune | hello@DarkEmber.in</p>
       </div>
     `);
 
@@ -250,7 +250,7 @@ app.post('/api/reviews', async (req, res) => {
     const entry = {
       id: `r_${Date.now()}`,
       name, email,
-      product: product || 'ChocoHunt',
+      product: product || 'DarkEmber',
       rating: Math.min(5, Math.max(1, parseInt(rating) || 5)),
       review,
       approved: false,
@@ -307,10 +307,10 @@ app.post('/api/newsletter', async (req, res) => {
     });
     saveDB(db);
 
-    await sendMail(email, 'Welcome to ChocoHunt Newsletter 🍫', `
+    await sendMail(email, 'Welcome to DarkEmber Newsletter 🍫', `
       <div style="font-family:Georgia,serif;max-width:560px;background:#1a0a00;color:#f5ede0;padding:3rem">
         <h1 style="font-weight:300;font-size:2rem;color:#f5ede0">You're subscribed! 🍫</h1>
-        <p style="color:rgba(245,237,224,.7);line-height:1.8;margin-top:1rem">Welcome to the ChocoHunt inner circle. You'll be the first to know about new collections, limited edition drops, and exclusive offers.</p>
+        <p style="color:rgba(245,237,224,.7);line-height:1.8;margin-top:1rem">Welcome to the DarkEmber inner circle. You'll be the first to know about new collections, limited edition drops, and exclusive offers.</p>
       </div>
     `);
 
@@ -342,7 +342,7 @@ app.post('/api/partner', async (req, res) => {
     });
     saveDB(db);
 
-    await sendMail('partners@chocohunt.in', `New Partner Enquiry: ${business}`, `
+    await sendMail('partners@DarkEmber.in', `New Partner Enquiry: ${business}`, `
       <div style="font-family:sans-serif">
         <h2>New Partnership Enquiry</h2>
         <p><strong>Business:</strong> ${business}</p>
@@ -391,7 +391,7 @@ app.get('/api/admin/users', authRequired, (req, res) => {
 
 /* ── HEALTH CHECK ── */
 app.get('/api/health', (_, res) => {
-  res.json({ status: 'ok', brand: 'ChocoHunt', by: 'LeadKnight', time: new Date().toISOString() });
+  res.json({ status: 'ok', brand: 'DarkEmber', by: 'LeadKnight', time: new Date().toISOString() });
 });
 
 /* ── 404 HANDLER ── */
@@ -406,7 +406,7 @@ app.use((req, res) => {
 app.listen(PORT, () => {
   console.log(`
   ╔══════════════════════════════════════════╗
-  ║   🍫  ChocoHunt Backend Server           ║
+  ║   🍫  DarkEmber Backend Server           ║
   ║   Managed & Designed by LeadKnight       ║
   ╠══════════════════════════════════════════╣
   ║   Local:   http://localhost:${PORT}         ║

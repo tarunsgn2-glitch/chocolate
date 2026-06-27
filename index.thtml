@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ChocoHunt — Crafted for True Chocolate Lovers</title>
-<meta name="description" content="ChocoHunt — handcrafted premium chocolates, luxury gifting collections, dark chocolate bars, truffles, and modern dessert experiences from Pune.">
-<meta property="og:title" content="ChocoHunt — Crafted for True Chocolate Lovers">
+<title>DarkEmber — Crafted for True Chocolate Lovers</title>
+<meta name="description" content="DarkEmber — handcrafted premium chocolates, luxury gifting collections, dark chocolate bars, truffles, and modern dessert experiences from Pune.">
+<meta property="og:title" content="DarkEmber — Crafted for True Chocolate Lovers">
 <meta property="og:description" content="Handcrafted premium chocolates, luxury gifting collections, and dark chocolate experiences.">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -342,7 +342,7 @@ a,button{cursor:none}
 
 <!-- LOADER -->
 <div id="load">
-  <div class="l-logo">ChocoHunt</div>
+  <div class="l-logo">DarkEmber</div>
   <div class="l-bar-w"><div class="l-bar"></div></div>
   <div class="l-sub">Crafted for True Chocolate Lovers</div>
 </div>
@@ -519,7 +519,7 @@ a,button{cursor:none}
   <div class="split-content rv d2">
     <span class="sp-eye">Our Philosophy</span>
     <h2 class="sp-title">Born from a<br><em>love of cocoa.</em></h2>
-    <p class="sp-body">ChocoHunt was founded in Pune with one belief: that chocolate is not a snack — it is an experience. We source the rarest cocoa from across the globe and transform it in our Kothrud atelier.</p>
+    <p class="sp-body">DarkEmber was founded in Pune with one belief: that chocolate is not a snack — it is an experience. We source the rarest cocoa from across the globe and transform it in our Kothrud atelier.</p>
     <p class="sp-body">Every bar, truffle, and gift box is a testament to our uncompromising commitment to quality — from bean selection to final packaging.</p>
     <div class="sp-stats">
       <div><div class="sp-num">50+</div><div class="sp-lbl">Varieties</div></div>
@@ -586,7 +586,7 @@ a,button{cursor:none}
     <div class="rv d2">
       <span class="s-eye">Our Story</span>
       <div class="about-quote">Born from a <em>passion</em> for the world's finest cocoa.</div>
-      <p class="about-p">ChocoHunt began with a simple belief: that chocolate is not just a treat — it is an emotion, a memory, a moment of pure joy. We source the rarest cocoa beans from across the globe and transform them into handcrafted masterpieces in our Pune atelier.</p>
+      <p class="about-p">DarkEmber began with a simple belief: that chocolate is not just a treat — it is an emotion, a memory, a moment of pure joy. We source the rarest cocoa beans from across the globe and transform them into handcrafted masterpieces in our Pune atelier.</p>
       <p class="about-p">Every truffle and gift box is a testament to uncompromising quality. From tempering to packaging, each step is carried out with artisanal care and luxury attention to detail.</p>
       <div class="about-stats">
         <div><div class="a-num">50+</div><div class="a-lbl">Varieties</div></div>
@@ -606,7 +606,7 @@ a,button{cursor:none}
   <div class="pq-over"></div>
   <div class="pq-content rv d1">
     <div class="pq-quote">"Chocolate is not just a flavour — it is a <strong>feeling,</strong> a memory, an act of love for yourself and the people who matter most."</div>
-    <div class="pq-attr">— ChocoHunt Atelier, Pune</div>
+    <div class="pq-attr">— DarkEmber Atelier, Pune</div>
   </div>
 </div>
 
@@ -636,7 +636,7 @@ a,button{cursor:none}
     <div class="vis-strip-text rv d2">
       <div class="vs-label">Gifting</div>
       <h2 class="vs-heading">The Gift<br><em>of Joy.</em></h2>
-      <p class="vs-body">From intimate birthdays to grand corporate hampers — ChocoHunt's gifting range turns every occasion into an unforgettable memory.</p>
+      <p class="vs-body">From intimate birthdays to grand corporate hampers — DarkEmber's gifting range turns every occasion into an unforgettable memory.</p>
       <a href="#contact" class="btn-p" style="margin-top:1.5rem;display:inline-block">Order Now</a>
     </div>
   </div>
@@ -676,9 +676,9 @@ a,button{cursor:none}
     <div class="testi-t" id="tt">
       <div class="tc"><div class="tc-stars">★★★★★</div><div class="tc-text">"The dark chocolate truffle collection is unlike anything I've had in India. Pure luxury in every bite — I order it every month without fail."</div><div class="tc-auth"><div class="tc-av">PR</div><div><div class="tc-name">Priya Rathod</div><div class="tc-loc">Mumbai · Corporate Client</div></div></div></div>
       <div class="tc"><div class="tc-stars">★★★★★</div><div class="tc-text">"Ordered a festival hamper for Diwali gifting to our entire team. The presentation was breathtaking and every single person absolutely loved it."</div><div class="tc-auth"><div class="tc-av">AK</div><div><div class="tc-name">Arvind Kulkarni</div><div class="tc-loc">Pune · Business Owner</div></div></div></div>
-      <div class="tc"><div class="tc-stars">★★★★★</div><div class="tc-text">"ChocoHunt's gift box was the most beautiful thing I've gifted my mother. She couldn't believe how exquisite the packaging and chocolates were."</div><div class="tc-auth"><div class="tc-av">SN</div><div><div class="tc-name">Sneha Nair</div><div class="tc-loc">Bangalore · Individual</div></div></div></div>
+      <div class="tc"><div class="tc-stars">★★★★★</div><div class="tc-text">"DarkEmber's gift box was the most beautiful thing I've gifted my mother. She couldn't believe how exquisite the packaging and chocolates were."</div><div class="tc-auth"><div class="tc-av">SN</div><div><div class="tc-name">Sneha Nair</div><div class="tc-loc">Bangalore · Individual</div></div></div></div>
       <div class="tc"><div class="tc-stars">★★★★★</div><div class="tc-text">"The 72% dark chocolate bars are sophisticated and complex. Finally a brand that takes chocolate as seriously as wine — stunning craft."</div><div class="tc-auth"><div class="tc-av">VM</div><div><div class="tc-name">Varun Mehta</div><div class="tc-loc">Delhi · Chocolatier</div></div></div></div>
-      <div class="tc"><div class="tc-stars">★★★★★</div><div class="tc-text">"We use ChocoHunt for all our hotel welcome amenities. Guests are always impressed. A product that truly matches a 5-star experience."</div><div class="tc-auth"><div class="tc-av">RD</div><div><div class="tc-name">Rohan D'Souza</div><div class="tc-loc">Goa · Hospitality</div></div></div></div>
+      <div class="tc"><div class="tc-stars">★★★★★</div><div class="tc-text">"We use DarkEmber for all our hotel welcome amenities. Guests are always impressed. A product that truly matches a 5-star experience."</div><div class="tc-auth"><div class="tc-av">RD</div><div><div class="tc-name">Rohan D'Souza</div><div class="tc-loc">Goa · Hospitality</div></div></div></div>
     </div>
     <div class="testi-nav">
       <button class="tb" id="tprev">&#8592;</button>
@@ -696,9 +696,9 @@ a,button{cursor:none}
   <div class="con-in">
     <div class="rv">
       <div class="con-title">We'd love to<br>hear <em>from you.</em></div>
-      <div class="con-det"><div class="con-ic">📍</div><div><div class="con-lbl">Address</div><div class="con-val">ChocoHunt Atelier, Kothrud, Pune — 411038, Maharashtra</div></div></div>
+      <div class="con-det"><div class="con-ic">📍</div><div><div class="con-lbl">Address</div><div class="con-val">DarkEmber Atelier, Kothrud, Pune — 411038, Maharashtra</div></div></div>
       <div class="con-det"><div class="con-ic">📞</div><div><div class="con-lbl">Phone</div><div class="con-val">+91 98765 43210</div><div class="con-tim">Mon – Sat, 10am – 7pm IST</div></div></div>
-      <div class="con-det"><div class="con-ic">✉️</div><div><div class="con-lbl">Email</div><div class="con-val">hello@chocohunt.in</div><div class="con-tim">We respond within 24 hours</div></div></div>
+      <div class="con-det"><div class="con-ic">✉️</div><div><div class="con-lbl">Email</div><div class="con-val">hello@DarkEmber.in</div><div class="con-tim">We respond within 24 hours</div></div></div>
       <div class="map-ph"><span>📍</span><span>Kothrud, Pune, Maharashtra</span><span style="font-size:.58rem;color:rgba(200,150,44,.28)">Google Maps Integration</span></div>
     </div>
     <div class="rv d2">
@@ -718,9 +718,9 @@ a,button{cursor:none}
     <div class="addr-sub">Premium Handcrafted Chocolates · Pune, India</div>
     <div class="divdr"><div class="divdr-l"></div><div class="divdr-d"></div><div class="divdr-l"></div></div>
     <div class="addr-line" style="margin-top:1.5rem">
-      ChocoHunt Atelier · Kothrud, Pune — 411038<br>
+      DarkEmber Atelier · Kothrud, Pune — 411038<br>
       Maharashtra, India<br>
-      +91 98765 43210 &nbsp;·&nbsp; hello@chocohunt.in
+      +91 98765 43210 &nbsp;·&nbsp; hello@DarkEmber.in
     </div>
     <div class="addr-badge">Managed &amp; Designed by LeadKnight</div>
   </div>
@@ -777,20 +777,20 @@ a,button{cursor:none}
     </div>
   </div>
   <div class="ft-bot">
-    <div class="ft-copy">© 2024 ChocoHunt. All rights reserved.</div>
+    <div class="ft-copy">© 2024 DarkEmber. All rights reserved.</div>
     <div class="ft-cred">Designed & Managed by LeadKnight</div>
     <button class="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
   </div>
 </footer>
 
 <!-- MODALS -->
-<div class="modal" id="modal-privacy"><button class="m-close" onclick="cMod('privacy')">✕</button><div class="m-inner"><div class="m-title">Privacy Policy</div><div class="m-sub">Last Updated: January 2024</div><div class="m-body"><h3>1. Information We Collect</h3><p>We collect information you provide directly — name, email, phone, delivery address, and payment information when placing orders or creating accounts.</p><h3>2. How We Use Your Information</h3><p>To process orders, send confirmations, provide customer support, send marketing communications (with consent), and improve our products and services.</p><h3>3. Cookies</h3><p>Our website uses cookies to enhance browsing, analyze traffic, and personalize content. You can control settings through your browser.</p><h3>4. Your Rights</h3><ul><li>Right to access your personal data</li><li>Right to correct inaccurate information</li><li>Right to request deletion of your data</li><li>Right to opt out of marketing communications</li></ul><h3>5. Contact</h3><p>For privacy concerns: privacy@chocohunt.in or +91 98765 43210</p></div></div></div>
+<div class="modal" id="modal-privacy"><button class="m-close" onclick="cMod('privacy')">✕</button><div class="m-inner"><div class="m-title">Privacy Policy</div><div class="m-sub">Last Updated: January 2024</div><div class="m-body"><h3>1. Information We Collect</h3><p>We collect information you provide directly — name, email, phone, delivery address, and payment information when placing orders or creating accounts.</p><h3>2. How We Use Your Information</h3><p>To process orders, send confirmations, provide customer support, send marketing communications (with consent), and improve our products and services.</p><h3>3. Cookies</h3><p>Our website uses cookies to enhance browsing, analyze traffic, and personalize content. You can control settings through your browser.</p><h3>4. Your Rights</h3><ul><li>Right to access your personal data</li><li>Right to correct inaccurate information</li><li>Right to request deletion of your data</li><li>Right to opt out of marketing communications</li></ul><h3>5. Contact</h3><p>For privacy concerns: privacy@DarkEmber.in or +91 98765 43210</p></div></div></div>
 
-<div class="modal" id="modal-terms"><button class="m-close" onclick="cMod('terms')">✕</button><div class="m-inner"><div class="m-title">Terms & Conditions</div><div class="m-sub">Last Updated: January 2024</div><div class="m-body"><h3>1. Acceptance of Terms</h3><p>By accessing ChocoHunt's website, you accept and agree to be bound by these Terms. If you do not agree, please do not use our website.</p><h3>2. Product Orders</h3><p>All orders are subject to product availability. We reserve the right to refuse or cancel orders. Payment must be received before orders are processed.</p><h3>3. Intellectual Property</h3><p>All content including text, graphics, logos, and images are the property of ChocoHunt and protected by applicable IP laws.</p><h3>4. Governing Law</h3><p>These terms are governed by the laws of Maharashtra, India. Disputes shall be subject to courts in Pune.</p></div></div></div>
+<div class="modal" id="modal-terms"><button class="m-close" onclick="cMod('terms')">✕</button><div class="m-inner"><div class="m-title">Terms & Conditions</div><div class="m-sub">Last Updated: January 2024</div><div class="m-body"><h3>1. Acceptance of Terms</h3><p>By accessing DarkEmber's website, you accept and agree to be bound by these Terms. If you do not agree, please do not use our website.</p><h3>2. Product Orders</h3><p>All orders are subject to product availability. We reserve the right to refuse or cancel orders. Payment must be received before orders are processed.</p><h3>3. Intellectual Property</h3><p>All content including text, graphics, logos, and images are the property of DarkEmber and protected by applicable IP laws.</p><h3>4. Governing Law</h3><p>These terms are governed by the laws of Maharashtra, India. Disputes shall be subject to courts in Pune.</p></div></div></div>
 
 <div class="modal" id="modal-shipping"><button class="m-close" onclick="cMod('shipping')">✕</button><div class="m-inner"><div class="m-title">Shipping Policy</div><div class="m-sub">Last Updated: January 2024</div><div class="m-body"><h3>Processing Time</h3><p>All orders processed within 1-2 business days. Orders after 2pm IST processed the following day.</p><h3>Delivery Timelines</h3><ul><li>Pune: Same day / Next day available</li><li>Maharashtra: 2-3 business days</li><li>Pan India: 3-5 business days</li></ul><h3>Packaging</h3><p>All chocolates packed in temperature-controlled packaging to ensure integrity during transit.</p><h3>Charges</h3><p>Free shipping on orders above ₹1,500. Standard ₹99 below this threshold.</p></div></div></div>
 
-<div class="modal" id="modal-refund"><button class="m-close" onclick="cMod('refund')">✕</button><div class="m-inner"><div class="m-title">Refund Policy</div><div class="m-sub">Last Updated: January 2024</div><div class="m-body"><h3>Return Eligibility</h3><p>Due to perishable nature, we accept returns only for damaged goods, incorrect items, or quality issues. Claims within 24 hours of delivery.</p><h3>How to Raise a Claim</h3><ul><li>Email hello@chocohunt.in with your order number</li><li>Attach photographs of the damaged product</li></ul><h3>Resolution</h3><p>Claims reviewed within 24 hours. Refunds processed within 5-7 business days.</p></div></div></div>
+<div class="modal" id="modal-refund"><button class="m-close" onclick="cMod('refund')">✕</button><div class="m-inner"><div class="m-title">Refund Policy</div><div class="m-sub">Last Updated: January 2024</div><div class="m-body"><h3>Return Eligibility</h3><p>Due to perishable nature, we accept returns only for damaged goods, incorrect items, or quality issues. Claims within 24 hours of delivery.</p><h3>How to Raise a Claim</h3><ul><li>Email hello@DarkEmber.in with your order number</li><li>Attach photographs of the damaged product</li></ul><h3>Resolution</h3><p>Claims reviewed within 24 hours. Refunds processed within 5-7 business days.</p></div></div></div>
 
 <script>
 // CURSOR

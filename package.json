@@ -1,7 +1,7 @@
 {
-  "name": "chocohunt-backend",
+  "name": "DarkEmber-backend",
   "version": "1.0.0",
-  "description": "ChocoHunt Premium Chocolate Brand — Backend API. Managed & Designed by LeadKnight.",
+  "description": "DarkEmber Premium Chocolate Brand — Backend API. Managed & Designed by LeadKnight.",
   "main": "backend/server.js",
   "scripts": {
     "start":    "node backend/server.js",
@@ -21,7 +21,7 @@
   "engines": {
     "node": ">=16.0.0"
   },
-  "keywords": ["chocohunt", "chocolate", "premium", "leadknight", "pune"],
+  "keywords": ["DarkEmber", "chocolate", "premium", "leadknight", "pune"],
   "author": "LeadKnight",
   "license": "MIT"
 }
